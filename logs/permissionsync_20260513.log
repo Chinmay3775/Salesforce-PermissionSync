@@ -1,0 +1,67 @@
+2026-05-13 16:12:06 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-05-13 16:12:06 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-05-13 16:12:06 | INFO     | app.main | ✅ Platform ready.
+2026-05-13 16:37:23 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-05-13 16:37:23 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-05-13 16:37:23 | INFO     | app.main | ✅ Platform ready.
+2026-05-13 16:50:24 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-05-13 16:50:24 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-05-13 16:50:24 | INFO     | app.main | ✅ Platform ready.
+2026-05-13 16:56:11 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-05-13 16:56:11 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-05-13 16:56:11 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-05-13 16:56:12 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-05-13 16:56:12 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-05-13 16:56:12 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-05-13 16:56:14 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-05-13 16:56:24 | INFO     | app.services.salesforce_service | Disconnecting DEV org...
+2026-05-13 16:56:25 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/revoke "HTTP/1.1 200 OK"
+2026-05-13 16:56:25 | INFO     | app.auth.salesforce_oauth | OAuth token revoked successfully
+2026-05-13 16:56:25 | INFO     | app.services.salesforce_service | ✅ Disconnected from DEV org
+2026-05-13 16:56:26 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-05-13 16:56:26 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-05-13 16:56:26 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-05-13 16:56:27 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-05-13 16:56:27 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-05-13 16:56:27 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-05-13 16:56:29 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-05-13 16:56:40 | INFO     | app.api.metadata | Fetching live metadata from DEV: ['Profile', 'PermissionSet', 'FieldPermissions', 'ObjectPermissions']
+2026-05-13 16:56:41 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-05-13 16:56:41 | INFO     | app.services.metadata_service | Starting live metadata retrieval for DEV...
+2026-05-13 16:56:41 | INFO     | app.services.metadata_service | Querying Permission Sets and Profiles...
+2026-05-13 16:56:41 | INFO     | app.services.metadata_service | Querying Field Permissions...
+2026-05-13 16:56:54 | INFO     | app.services.metadata_service | Querying Object Permissions...
+2026-05-13 16:56:59 | INFO     | app.services.metadata_service | Live metadata retrieval complete. Total items tracked: 26285

@@ -1,0 +1,154 @@
+2026-05-09 16:31:43 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-05-09 16:31:43 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-05-09 16:31:43 | INFO     | app.main | ✅ Platform ready.
+2026-05-09 16:32:53 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 16:58:35 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 16:59:03 | INFO     | app.api.comparison | Comparing DEV vs UAT
+2026-05-09 16:59:03 | INFO     | app.services.comparison_service | Comparing DEV vs UAT
+2026-05-09 17:04:04 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 17:08:13 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 17:11:44 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 17:11:46 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 17:11:48 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 17:11:49 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 17:11:53 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 17:11:54 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 18:05:53 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-05-09 18:05:53 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-05-09 18:05:53 | INFO     | app.main | ✅ Platform ready.
+2026-05-09 18:08:17 | INFO     | app.api.comparison | Comparing DEV vs UAT
+2026-05-09 18:08:17 | INFO     | app.services.comparison_service | Comparing DEV vs UAT
+2026-05-09 18:22:23 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-05-09 18:22:23 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-05-09 18:22:23 | INFO     | app.main | ✅ Platform ready.
+2026-05-09 18:26:25 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-05-09 18:26:25 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-05-09 18:26:25 | INFO     | app.main | ✅ Platform ready.
+2026-05-09 19:01:57 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-05-09 19:01:57 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-05-09 19:01:57 | INFO     | app.main | ✅ Platform ready.
+2026-05-09 19:17:49 | INFO     | app.api.comparison | Comparing DEV vs UAT
+2026-05-09 19:17:49 | INFO     | app.services.comparison_service | Comparing DEV vs UAT
+2026-05-09 19:18:05 | INFO     | app.api.comparison | Comparing DEV vs PROD
+2026-05-09 19:18:05 | INFO     | app.services.comparison_service | Comparing DEV vs PROD
+2026-05-09 19:18:11 | INFO     | app.api.comparison | Comparing DEV vs PROD
+2026-05-09 19:18:11 | INFO     | app.services.comparison_service | Comparing DEV vs PROD
+2026-05-09 19:18:33 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 19:18:39 | INFO     | app.api.metadata | Fetching metadata from DEV: ['Profile', 'PermissionSet']
+2026-05-09 19:20:59 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-05-09 19:20:59 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-05-09 19:20:59 | INFO     | app.main | ✅ Platform ready.
+2026-05-09 19:25:47 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:25:47 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:25:49 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:25:54 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:25:54 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:25:56 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:25:59 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:25:59 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:26:01 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:26:03 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:26:03 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:26:05 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:26:07 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:26:07 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:26:09 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:28:02 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:28:02 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:28:03 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:28:26 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:28:26 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:28:28 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:28:35 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:28:35 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:28:36 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:28:55 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:28:55 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:28:56 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:34:09 | INFO     | app.api.orgs | Connecting to DEV org: PermSync-DEV with username keripalechinmaydev@gmail.com
+2026-05-09 19:34:09 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:34:10 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:35:37 | INFO     | app.api.orgs | Connecting to DEV org: Chi with username keripalechinmaydev@gmail.com
+2026-05-09 19:35:37 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:35:38 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:35:42 | INFO     | app.api.orgs | Connecting to DEV org: Chi with username keripalechinmaydev@gmail.com
+2026-05-09 19:35:42 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:35:43 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:35:44 | INFO     | app.api.orgs | Connecting to DEV org: Chi with username keripalechinmaydev@gmail.com
+2026-05-09 19:35:44 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:35:46 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:35:46 | INFO     | app.api.orgs | Connecting to DEV org: Chi with username keripalechinmaydev@gmail.com
+2026-05-09 19:35:46 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:35:47 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:36:05 | INFO     | app.api.orgs | Connecting to DEV org: Chi with username keripalechinmaydev@gmail.com
+2026-05-09 19:36:05 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:36:08 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
+2026-05-09 19:36:57 | INFO     | app.api.orgs | Connecting to DEV org: Chi with username keripalechinmaydev@gmail.com
+2026-05-09 19:36:57 | INFO     | app.services.salesforce_service | Attempting to connect to DEV org with username keripalechinmaydev@gmail.com
+2026-05-09 19:36:58 | ERROR    | app.services.salesforce_service | Auth failed for DEV: INVALID_LOGIN: Invalid username, password, security token; or user locked out.
