@@ -1,0 +1,291 @@
+2026-07-03 23:03:08 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-03 23:03:08 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-03 23:03:08 | INFO     | app.main | ✅ Platform ready.
+2026-07-03 23:08:03 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-07-03 23:08:03 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-07-03 23:08:03 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-03 23:08:04 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-03 23:08:04 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-03 23:08:04 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-03 23:08:06 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-07-03 23:08:36 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-07-03 23:08:36 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-07-03 23:08:36 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-03 23:08:37 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-03 23:08:37 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-03 23:08:37 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-03 23:08:38 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-07-03 23:08:59 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-03 23:09:00 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:09:00 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-07-03 23:09:01 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-07-03 23:09:01 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-03 23:09:02 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:09:02 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-07-03 23:09:02 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-07-03 23:09:28 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-03 23:09:30 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:09:30 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-07-03 23:09:30 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-07-03 23:09:30 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-03 23:09:32 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:09:32 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-07-03 23:09:32 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-07-03 23:11:56 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-03 23:11:57 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:11:57 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-07-03 23:11:58 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-07-03 23:11:58 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-03 23:12:00 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:12:00 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-07-03 23:12:00 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-07-03 23:12:16 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 37 profile pairs
+2026-07-03 23:12:16 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 37
+2026-07-03 23:12:16 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-03 23:12:17 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:12:17 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in DEV
+2026-07-03 23:12:20 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:12:20 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in UAT
+2026-07-03 23:12:38 | INFO     | app.api.agent | Agent approval received: 32 actions → UAT
+2026-07-03 23:12:38 | INFO     | app.services.agent_service | Processing approval for 32 actions → UAT
+2026-07-03 23:12:40 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:12:40 | INFO     | app.services.sync_service | Applying 32 approved actions to UAT
+2026-07-03 23:12:42 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Analytics Cloud Integration User'
+2026-07-03 23:12:43 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Analytics Cloud Security User'
+2026-07-03 23:12:45 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Anypoint Integration': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:12:46 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Authenticated Website': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:12:47 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Contract Manager'
+2026-07-03 23:12:48 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Cross Org Data Proxy User'
+2026-07-03 23:12:50 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Customer Community Login User'
+2026-07-03 23:12:51 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Customer Community Plus Login User'
+2026-07-03 23:12:52 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Customer Community Plus User'
+2026-07-03 23:12:54 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Customer Community User'
+2026-07-03 23:12:54 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Customer Portal Manager Custom'
+2026-07-03 23:12:56 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Customer Portal Manager Standard'
+2026-07-03 23:12:57 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Einstein Agent User'
+2026-07-03 23:12:58 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'External Apps Login User'
+2026-07-03 23:13:00 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'External Einstein Agent User'
+2026-07-03 23:13:01 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'External Identity User'
+2026-07-03 23:13:02 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Force.com - App Subscription User'
+2026-07-03 23:13:03 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Force.com - Free User': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:13:05 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Gold Partner User'
+2026-07-03 23:13:06 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'High Volume Customer Portal'
+2026-07-03 23:13:07 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'High Volume Customer Portal User'
+2026-07-03 23:13:08 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Identity User': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:13:08 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Minimum Access - API Only Integrations': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:13:10 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Minimum Access - Salesforce'
+2026-07-03 23:13:11 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Partner App Subscription User'
+2026-07-03 23:13:13 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Partner Community Login User'
+2026-07-03 23:13:13 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Partner Community User'
+2026-07-03 23:13:15 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Silver Partner User'
+2026-07-03 23:13:16 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Solution Manager'
+2026-07-03 23:13:17 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Standard Platform User'
+2026-07-03 23:13:18 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Standard User'
+2026-07-03 23:13:19 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Work.com Only User': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:13:19 | INFO     | app.services.sync_service | Sync complete: 26 succeeded, 6 failed
+2026-07-03 23:19:36 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-03 23:19:43 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-03 23:19:43 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-03 23:19:43 | INFO     | app.main | ✅ Platform ready.
+2026-07-03 23:19:55 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-03 23:19:55 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-03 23:20:05 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-03 23:20:05 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-03 23:20:33 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-07-03 23:20:33 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-07-03 23:20:33 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-03 23:20:34 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-03 23:20:34 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-03 23:20:34 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-03 23:20:37 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-07-03 23:20:57 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-07-03 23:20:57 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-07-03 23:20:57 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-03 23:20:58 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-03 23:20:58 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-03 23:20:58 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-03 23:21:00 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-07-03 23:21:19 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-03 23:21:21 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:21:21 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-07-03 23:21:22 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-07-03 23:21:22 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-03 23:21:23 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:21:23 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-07-03 23:21:24 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-07-03 23:21:45 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-07-03 23:21:45 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-07-03 23:21:45 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-03 23:21:47 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:21:47 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in DEV
+2026-07-03 23:21:51 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:21:51 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in UAT
+2026-07-03 23:25:33 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 2 profile pairs
+2026-07-03 23:25:33 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 2
+2026-07-03 23:25:33 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-03 23:25:35 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:25:35 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in DEV
+2026-07-03 23:25:37 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:25:37 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in UAT
+2026-07-03 23:25:40 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-07-03 23:25:40 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-07-03 23:25:41 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:25:41 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-07-03 23:25:42 | ERROR    | app.services.sync_service | ❌ Failed to sync ApexClass:AccountUserIdUpdater for profile 'Anypoint Integration': Session.request() got an unexpected keyword argument 'additional_headers'
+2026-07-03 23:25:42 | INFO     | app.services.sync_service | Sync complete: 0 succeeded, 1 failed
+2026-07-03 23:26:50 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-03 23:26:51 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:26:51 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-07-03 23:26:52 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-07-03 23:26:52 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-03 23:26:53 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:26:53 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-07-03 23:26:53 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-07-03 23:27:01 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 43 profile pairs
+2026-07-03 23:27:01 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 43
+2026-07-03 23:27:01 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-03 23:27:03 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:27:03 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in DEV
+2026-07-03 23:27:06 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:27:06 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in UAT
+2026-07-03 23:27:10 | INFO     | app.api.agent | Agent approval received: 12 actions → UAT
+2026-07-03 23:27:10 | INFO     | app.services.agent_service | Processing approval for 12 actions → UAT
+2026-07-03 23:27:12 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 23:27:12 | INFO     | app.services.sync_service | Applying 12 approved actions to UAT
+2026-07-03 23:27:13 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Anypoint Integration': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:27:14 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Authenticated Website': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:27:15 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Force.com - Free User': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:27:16 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Identity User': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:27:17 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Minimum Access - API Only Integrations': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:27:18 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Work.com Only User': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:27:19 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'B2B Reordering Portal Buyer Profile'
+2026-07-03 23:27:20 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Custom: Marketing Profile'
+2026-07-03 23:27:22 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Custom: Sales Profile'
+2026-07-03 23:27:23 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Custom: Support Profile'
+2026-07-03 23:27:24 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Read Only'
+2026-07-03 23:27:26 | ERROR    | app.services.sync_service | ❌ Failed to sync CustomField:Account.UserID__c for profile 'Salesforce API Only System Integrations': Malformed request https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v59.0/sobjects/FieldPermissions/. Response content: [{'message': "The user license doesn't allow the SobjectType: Account", 'errorCode': 'FIELD_INTEGRITY_EXCEPTION', 'fields': []}]
+2026-07-03 23:27:26 | INFO     | app.services.sync_service | Sync complete: 5 succeeded, 7 failed
+2026-07-03 23:47:44 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-03 23:47:48 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-03 23:47:48 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-03 23:47:48 | INFO     | app.main | ✅ Platform ready.
+2026-07-03 23:48:45 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-03 23:48:49 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-03 23:48:49 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-03 23:48:49 | INFO     | app.main | ✅ Platform ready.
+2026-07-03 23:51:11 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-03 23:51:14 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-03 23:51:14 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-03 23:51:14 | INFO     | app.main | ✅ Platform ready.
+2026-07-04 00:02:47 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-04 00:02:47 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-04 00:13:19 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-04 00:13:19 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-04 00:13:51 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-04 00:13:51 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-04 00:19:49 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-07-04 00:19:49 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-07-04 00:19:49 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-04 00:19:50 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-04 00:19:50 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-04 00:19:50 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-04 00:19:52 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-07-04 00:20:17 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-07-04 00:20:17 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-07-04 00:20:17 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-04 00:20:18 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-04 00:20:18 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-04 00:20:18 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-04 00:20:20 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-07-04 00:21:52 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-04 00:21:54 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-04 00:21:54 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-07-04 00:21:54 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-07-04 00:21:54 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-04 00:21:57 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-04 00:21:57 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-07-04 00:21:58 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-07-04 00:22:23 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-07-04 00:22:23 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-07-04 00:22:23 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-04 00:22:24 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-04 00:22:24 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in DEV
+2026-07-04 00:22:26 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-04 00:22:26 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in UAT
+2026-07-04 00:22:41 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 2 profile pairs
+2026-07-04 00:22:41 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 2
+2026-07-04 00:22:41 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-04 00:22:42 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-04 00:22:42 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in DEV
+2026-07-04 00:22:44 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-04 00:22:44 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in UAT
+2026-07-04 00:22:47 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-07-04 00:22:47 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-07-04 00:22:48 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-04 00:22:48 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-07-04 00:22:48 | INFO     | app.services.sync_service | Starting Metadata API Deployment Flow...
+2026-07-04 00:22:48 | INFO     | app.services.sync_service | Retrieving profiles: ['Anypoint_Integration']
+2026-07-04 00:22:48 | ERROR    | app.services.sync_service | Retrieve exception: can only concatenate str (not "dict") to str
+2026-07-04 00:23:38 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-07-04 00:23:38 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-07-04 00:23:39 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-04 00:23:39 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-07-04 00:23:39 | INFO     | app.services.sync_service | Starting Metadata API Deployment Flow...
+2026-07-04 00:23:39 | INFO     | app.services.sync_service | Retrieving profiles: ['Anypoint_Integration']
+2026-07-04 00:23:39 | ERROR    | app.services.sync_service | Retrieve exception: can only concatenate str (not "dict") to str
+2026-07-04 00:25:12 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.

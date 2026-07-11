@@ -65,7 +65,7 @@ export function EnvironmentCard({ environment, alias, connected, orgId, username
       whileHover={{ y: -2, boxShadow: `0 8px 32px rgba(0,0,0,0.3), 0 0 20px ${color}15` }}
       transition={{ duration: 0.2 }}
       onClick={onClick}
-      className="glass-card p-5 cursor-pointer"
+      className="card p-5 cursor-pointer"
       style={{ borderTop: `2px solid ${color}` }}
     >
       <div className="flex items-center justify-between mb-4">
@@ -118,7 +118,7 @@ export function DriftSummaryCard({ title, value, severity, icon: Icon, trend }) 
   return (
     <motion.div
       whileHover={{ y: -2 }}
-      className="glass-card p-5"
+      className="card p-5"
     >
       <div className="flex items-center justify-between mb-3">
         <span className="text-[11px] font-medium uppercase tracking-wider" style={{ color: 'var(--color-text-tertiary)' }}>

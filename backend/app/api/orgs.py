@@ -10,6 +10,7 @@ from app.services.salesforce_service import (
     get_all_org_statuses,
     disconnect_org as service_disconnect,
     validate_connection as service_validate,
+    fetch_profiles as service_fetch_profiles,
 )
 from app.auth.salesforce_oauth import OAuthError
 
@@ -123,3 +124,60 @@ async def disconnect_org(request: dict):
         "success": False,
         "message": f"Could not disconnect {environment} org",
     }
+
+
+@router.get("/profiles")
+async def list_profiles(environment: str = "DEV"):
+    """
+    Fetch all Profile names from a connected Salesforce org.
+
+    Query param:
+        environment: DEV, UAT, or PROD (default: DEV)
+
+    Returns:
+        { "environment": "DEV", "profiles": ["Admin", "Sales User", ...] }
+    """
+    logger.info(f"Fetching profiles for {environment}")
+    try:
+        profiles = service_fetch_profiles(environment)
+        return {
+            "environment": environment,
+            "profiles": profiles,
+            "count": len(profiles),
+        }
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Failed to list profiles for {environment}: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+@router.get("/test-profiles")
+async def test_profiles():
+    """Temporary endpoint to fetch and compare DEV vs UAT profile names."""
+    try:
+        from app.services.salesforce_service import get_connection
+        
+        dev_sf = get_connection("DEV")
+        uat_sf = get_connection("UAT")
+        
+        dev_profiles = []
+        if dev_sf:
+            res = dev_sf.query_all("SELECT Name, UserLicenseId FROM Profile")
+            dev_profiles = [r["Name"] for r in res.get("records", [])]
+            
+        uat_profiles = []
+        if uat_sf:
+            res = uat_sf.query_all("SELECT Name, UserLicenseId FROM Profile")
+            uat_profiles = [r["Name"] for r in res.get("records", [])]
+            
+        return {
+            "DEV_Count": len(dev_profiles),
+            "UAT_Count": len(uat_profiles),
+            "DEV_Profiles": sorted(dev_profiles),
+            "UAT_Profiles": sorted(uat_profiles),
+            "Differences": {
+                "In_DEV_Only": sorted(list(set(dev_profiles) - set(uat_profiles))),
+                "In_UAT_Only": sorted(list(set(uat_profiles) - set(dev_profiles)))
+            }
+        }
+    except Exception as e:
+        return {"error": str(e)}

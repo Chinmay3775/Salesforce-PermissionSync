@@ -4,71 +4,49 @@ import logging
 from fastapi import APIRouter, HTTPException
 from datetime import datetime
 
-from app.services.metadata_service import retrieve_live_metadata
-from app.services.comparison_service import get_metadata_tree
+from app.services.metadata_service import retrieve_component_permissions
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-# In-memory cache for the latest retrieved snapshots
+# We can keep a cache for individual component snapshots if needed
 _metadata_cache = {}
 
-
-@router.post("/fetch-metadata")
-async def fetch_metadata(request: dict):
-    """Fetch real metadata from a Salesforce org using SOQL."""
+@router.post("/fetch-component-metadata")
+async def fetch_component_metadata(request: dict):
+    """Fetch real metadata for a specific component from a Salesforce org."""
     environment = request.get("environment", "DEV")
-    metadata_types = request.get("metadata_types", ["Profile", "PermissionSet", "FieldPermissions", "ObjectPermissions"])
+    component_name = request.get("component_name")
+    component_type = request.get("component_type")
 
-    logger.info(f"Fetching live metadata from {environment}: {metadata_types}")
+    if not component_name or not component_type:
+        raise HTTPException(status_code=400, detail="Missing component_name or component_type")
+
+    logger.info(f"Fetching metadata for {component_type}:{component_name} from {environment}")
 
     try:
-        # Retrieve live snapshot using SOQL queries
-        snapshot = retrieve_live_metadata(environment)
-        
-        # Cache the real snapshot for comparison engine
-        _metadata_cache[environment] = snapshot
+        snapshot = retrieve_component_permissions(component_name, component_type, environment)
+        # Cache using a key
+        cache_key = f"{environment}_{component_type}_{component_name}"
+        _metadata_cache[cache_key] = snapshot
 
         return {
             "status": "success",
             "environment": environment,
+            "component": f"{component_type}:{component_name}",
             "profiles_count": len(snapshot["profiles"]),
-            "permission_sets_count": len(snapshot["permission_sets"]),
-            "total_field_permissions": sum(
-                len(p.get("fieldPermissions", []))
-                for p in snapshot["profiles"].values()
-            ),
-            "total_object_permissions": sum(
-                len(p.get("objectPermissions", []))
-                for p in snapshot["profiles"].values()
-            ),
             "fetched_at": datetime.utcnow().isoformat(),
-            "message": f"Successfully retrieved live metadata from {environment}",
         }
     except Exception as e:
         logger.error(f"Failed to fetch metadata from {environment}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-
-@router.get("/metadata-tree")
-async def metadata_tree(environment: str = "DEV"):
-    """Get metadata as a navigable tree."""
-    tree = get_metadata_tree(environment)
-    return tree
-
-
 @router.get("/metadata-snapshot")
-async def metadata_snapshot(environment: str = "DEV", profile: str = None):
-    """Get full metadata snapshot for an environment."""
-    snapshot = _metadata_cache.get(environment)
+async def metadata_snapshot(environment: str, component_name: str, component_type: str):
+    """Get full metadata snapshot for a component."""
+    cache_key = f"{environment}_{component_type}_{component_name}"
+    snapshot = _metadata_cache.get(cache_key)
     if not snapshot:
-        raise HTTPException(status_code=404, detail=f"No metadata found for {environment}. Please fetch it first.")
-
-    if profile and profile in snapshot.get("profiles", {}):
-        return {
-            "environment": environment,
-            "profile": profile,
-            "data": snapshot["profiles"][profile],
-        }
+        raise HTTPException(status_code=404, detail="No metadata found. Please fetch it first.")
 
     return snapshot

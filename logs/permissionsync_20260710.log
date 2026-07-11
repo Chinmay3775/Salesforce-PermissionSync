@@ -1,0 +1,524 @@
+2026-07-10 00:17:39 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 00:17:39 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 00:17:39 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 00:17:41 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 00:17:41 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 00:17:41 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 00:21:40 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-10 00:21:43 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 00:21:43 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 00:21:43 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 00:22:13 | INFO     | app.api.orgs | OAuth connection request: DEV org 'Org-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-07-10 00:22:13 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-07-10 00:22:13 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-10 00:22:14 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 00:22:14 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-10 00:22:14 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-10 00:22:15 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-07-10 00:22:15 | INFO     | app.api.orgs | OAuth connection request: UAT org 'Org-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-07-10 00:22:15 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-07-10 00:22:15 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-10 00:22:15 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 00:22:15 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-10 00:22:15 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-10 00:22:16 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-07-10 00:22:45 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-10 00:22:46 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:22:47 | INFO     | app.services.salesforce_service | Found 45 relevant profiles in DEV
+2026-07-10 00:22:47 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-10 00:22:48 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:22:48 | INFO     | app.services.salesforce_service | Found 45 relevant profiles in UAT
+2026-07-10 00:23:00 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 46 profile pairs
+2026-07-10 00:23:00 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 46
+2026-07-10 00:23:00 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-10 00:23:01 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:23:01 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID in DEV
+2026-07-10 00:23:04 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:23:04 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID in UAT
+2026-07-10 00:24:42 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-10 00:24:49 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 00:24:49 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 00:24:49 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 00:25:16 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-10 00:25:20 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 00:25:20 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 00:25:20 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 00:25:34 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-10 00:25:34 | WARNING  | app.services.salesforce_service | Cannot fetch profiles. DEV is not connected.
+2026-07-10 00:25:34 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-10 00:25:34 | WARNING  | app.services.salesforce_service | Cannot fetch profiles. UAT is not connected.
+2026-07-10 00:25:40 | INFO     | app.api.orgs | OAuth connection request: DEV org 'Org-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-07-10 00:25:40 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-07-10 00:25:40 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-10 00:25:41 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 00:25:41 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-10 00:25:41 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-10 00:25:42 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-07-10 00:25:42 | INFO     | app.api.orgs | OAuth connection request: UAT org 'Org-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-07-10 00:25:42 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-07-10 00:25:42 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-10 00:25:43 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 00:25:43 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-10 00:25:43 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-10 00:25:44 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-07-10 00:25:53 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-10 00:25:54 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:25:55 | INFO     | app.services.salesforce_service | Found 45 relevant profiles in DEV
+2026-07-10 00:25:55 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-10 00:25:56 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:25:56 | INFO     | app.services.salesforce_service | Found 45 relevant profiles in UAT
+2026-07-10 00:26:05 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 46 profile pairs
+2026-07-10 00:26:05 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 46
+2026-07-10 00:26:05 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-10 00:26:06 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:26:06 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in DEV
+2026-07-10 00:26:09 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:26:09 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in UAT
+2026-07-10 00:26:23 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-07-10 00:26:23 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-07-10 00:26:24 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:26:24 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-07-10 00:26:25 | INFO     | app.services.sync_service | Starting Metadata API Deployment Flow...
+2026-07-10 00:26:26 | INFO     | app.services.sync_service | Profile mapping resolved: {'Authenticated Website (PLATFORM_PORTAL)': {'is_custom': False, 'api_name': 'PlatformPortal'}}
+2026-07-10 00:26:26 | INFO     | app.services.sync_service | Building profile XML: 'Authenticated Website (PLATFORM_PORTAL)' → API name 'PlatformPortal' (1 actions)
+2026-07-10 00:26:26 | INFO     | app.services.sync_service | Built deployment ZIP with 1 profiles
+2026-07-10 00:26:26 | INFO     | app.services.sync_service | Deploying ZIP with testLevel=NoTestRun and rollbackOnError=False
+2026-07-10 00:26:27 | INFO     | app.services.sync_service | Polling deployment status for Job ID: 0AfdL00000dFdCHSA0
+2026-07-10 00:26:28 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 00:26:31 | INFO     | app.services.sync_service | Deploy poll status: Succeeded
+2026-07-10 00:26:31 | INFO     | app.services.sync_service | Deployment finished with status: Succeeded
+2026-07-10 00:26:31 | INFO     | app.services.sync_service | ====== FULL DEPLOYMENT RESULT ======
+{
+  "status": "Succeeded",
+  "state_detail": null,
+  "details": {
+    "componentFailures": []
+  }
+}
+2026-07-10 00:36:32 | INFO     | app.services.salesforce_service | Disconnecting DEV org...
+2026-07-10 00:36:33 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/revoke "HTTP/1.1 200 OK"
+2026-07-10 00:36:33 | INFO     | app.auth.salesforce_oauth | OAuth token revoked successfully
+2026-07-10 00:36:33 | INFO     | app.services.salesforce_service | ✅ Disconnected from DEV org
+2026-07-10 00:36:33 | INFO     | app.services.salesforce_service | Disconnecting DEV org...
+2026-07-10 00:36:33 | INFO     | app.services.salesforce_service | ✅ Disconnected from DEV org
+2026-07-10 00:36:34 | INFO     | app.services.salesforce_service | Disconnecting UAT org...
+2026-07-10 00:36:35 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/revoke "HTTP/1.1 200 OK"
+2026-07-10 00:36:35 | INFO     | app.auth.salesforce_oauth | OAuth token revoked successfully
+2026-07-10 00:36:35 | INFO     | app.services.salesforce_service | ✅ Disconnected from UAT org
+2026-07-10 00:37:11 | INFO     | app.api.orgs | OAuth connection request: DEV org 'Org-DEV' → https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com/
+2026-07-10 00:37:11 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-07-10 00:37:11 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com/services/oauth2/token
+2026-07-10 00:37:12 | INFO     | httpx | HTTP Request: POST https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 00:37:12 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com
+2026-07-10 00:37:12 | INFO     | app.services.salesforce_service | OAuth token acquired → https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com
+2026-07-10 00:37:13 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Shrimad Rajchandra Love and Care - USA Inc) via OAuth 2.0 Client Credentials
+2026-07-10 00:37:39 | INFO     | app.api.orgs | OAuth connection request: UAT org 'Org-UAT' → https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com/
+2026-07-10 00:37:39 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-07-10 00:37:39 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com/services/oauth2/token
+2026-07-10 00:37:41 | INFO     | httpx | HTTP Request: POST https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 00:37:41 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com
+2026-07-10 00:37:41 | INFO     | app.services.salesforce_service | OAuth token acquired → https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com
+2026-07-10 00:37:42 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (Shrimad Rajchandra Love and Care - USA Inc) via OAuth 2.0 Client Credentials
+2026-07-10 00:38:57 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-10 00:39:00 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:39:01 | INFO     | app.services.salesforce_service | Found 52 relevant profiles in DEV
+2026-07-10 00:39:01 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-10 00:39:02 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:39:03 | INFO     | app.services.salesforce_service | Found 40 relevant profiles in UAT
+2026-07-10 00:41:59 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 36 profile pairs
+2026-07-10 00:41:59 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 36
+2026-07-10 00:41:59 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-10 00:42:00 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:42:00 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Stay_Request__c.Bed_Number__c in DEV
+2026-07-10 00:42:05 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:42:05 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Stay_Request__c.Bed_Number__c in UAT
+2026-07-10 00:42:12 | INFO     | app.api.agent | Agent approval received: 25 actions → UAT
+2026-07-10 00:42:12 | INFO     | app.services.agent_service | Processing approval for 25 actions → UAT
+2026-07-10 00:42:13 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:42:13 | INFO     | app.services.sync_service | Applying 25 approved actions to UAT
+2026-07-10 00:42:15 | INFO     | app.services.sync_service | Starting Metadata API Deployment Flow...
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Profile mapping resolved: {'Volunteers': {'is_custom': True, 'api_name': 'Volunteers'}, 'HNI Volunteer': {'is_custom': True, 'api_name': 'HNI Volunteer'}, 'Account Profile': {'is_custom': True, 'api_name': 'Account Profile'}, 'Volunteer for Salesforce': {'is_custom': True, 'api_name': 'Volunteer for Salesforce'}, 'Partner Community User': {'is_custom': False, 'api_name': 'Partner Community User'}, 'partner': {'is_custom': True, 'api_name': 'partner'}, 'Center Leaders Community': {'is_custom': True, 'api_name': 'Center Leaders Community'}, 'PMTPCT Community': {'is_custom': True, 'api_name': 'PMTPCT Community'}, 'PR Team Community': {'is_custom': True, 'api_name': 'PR Team Community'}, 'Registration Community': {'is_custom': True, 'api_name': 'Registration Community'}, 'Anypoint Integration': {'is_custom': False, 'api_name': 'Anypoint Integration'}, 'Identity User': {'is_custom': False, 'api_name': 'Identity User'}, 'Customer Community Plus Login User': {'is_custom': False, 'api_name': 'Customer Community Plus Login User'}, 'Minimum Access - Salesforce': {'is_custom': False, 'api_name': 'Minimum Access - Salesforce'}, 'Salesforce API Only System Integrations': {'is_custom': True, 'api_name': 'Salesforce API Only System Integrations'}, 'Customer Community Plus User': {'is_custom': False, 'api_name': 'Customer Community Plus User'}, 'Solution Manager': {'is_custom': False, 'api_name': 'SolutionManager'}, 'Standard User': {'is_custom': False, 'api_name': 'Standard'}, 'Marketing User': {'is_custom': False, 'api_name': 'MarketingProfile'}, 'System Administrator': {'is_custom': False, 'api_name': 'Admin'}, 'Contract Manager': {'is_custom': False, 'api_name': 'ContractManager'}, 'Analytics Cloud Integration User': {'is_custom': False, 'api_name': 'Analytics Cloud Integration User'}, 'Analytics Cloud Security User': {'is_custom': False, 'api_name': 'Analytics Cloud Security User'}, 'Minimum Access - API Only Integrations': {'is_custom': False, 'api_name': 'Minimum Access - API Only Integrations'}, 'Sales Insights Integration User': {'is_custom': False, 'api_name': 'Sales Insights Integration User'}}
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Analytics Cloud Integration User' → API name 'Analytics Cloud Integration User' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Analytics Cloud Security User' → API name 'Analytics Cloud Security User' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Anypoint Integration' → API name 'Anypoint Integration' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Contract Manager' → API name 'ContractManager' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community Plus Login User' → API name 'Customer Community Plus Login User' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community Plus User' → API name 'Customer Community Plus User' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Identity User' → API name 'Identity User' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Marketing User' → API name 'MarketingProfile' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Minimum Access - API Only Integrations' → API name 'Minimum Access - API Only Integrations' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Minimum Access - Salesforce' → API name 'Minimum Access - Salesforce' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Partner Community User' → API name 'Partner Community User' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Sales Insights Integration User' → API name 'Sales Insights Integration User' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Solution Manager' → API name 'SolutionManager' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Standard User' → API name 'Standard' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'System Administrator' → API name 'Admin' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Account Profile' → API name 'Account Profile' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Center Leaders Community' → API name 'Center Leaders Community' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'HNI Volunteer' → API name 'HNI Volunteer' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'PMTPCT Community' → API name 'PMTPCT Community' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'PR Team Community' → API name 'PR Team Community' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Registration Community' → API name 'Registration Community' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Salesforce API Only System Integrations' → API name 'Salesforce API Only System Integrations' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Volunteer for Salesforce' → API name 'Volunteer for Salesforce' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'Volunteers' → API name 'Volunteers' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Building profile XML: 'partner' → API name 'partner' (1 actions)
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Built deployment ZIP with 25 profiles
+2026-07-10 00:42:41 | INFO     | app.services.sync_service | Deploying ZIP with testLevel=NoTestRun and rollbackOnError=False
+2026-07-10 00:42:42 | INFO     | app.services.sync_service | Polling deployment status for Job ID: 0AfWr00000IVMDBKA5
+2026-07-10 00:42:42 | INFO     | app.services.sync_service | Deploy poll status: Pending
+2026-07-10 00:42:46 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 00:42:49 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 00:42:53 | INFO     | app.services.sync_service | Deploy poll status: Succeeded
+2026-07-10 00:42:53 | INFO     | app.services.sync_service | Deployment finished with status: Succeeded
+2026-07-10 00:42:53 | INFO     | app.services.sync_service | ====== FULL DEPLOYMENT RESULT ======
+{
+  "status": "Succeeded",
+  "state_detail": null,
+  "details": {
+    "componentFailures": []
+  }
+}
+2026-07-10 00:44:26 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 36 profile pairs
+2026-07-10 00:44:26 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 36
+2026-07-10 00:44:26 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-10 00:44:27 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:44:27 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Stay_Request__c.Bed_Number__c in DEV
+2026-07-10 00:44:32 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:44:32 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Stay_Request__c.Bed_Number__c in UAT
+2026-07-10 00:45:39 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-10 00:45:41 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:45:42 | INFO     | app.services.salesforce_service | Found 52 relevant profiles in DEV
+2026-07-10 00:45:42 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-10 00:45:43 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:45:44 | INFO     | app.services.salesforce_service | Found 40 relevant profiles in UAT
+2026-07-10 00:45:49 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 36 profile pairs
+2026-07-10 00:45:49 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 36
+2026-07-10 00:45:49 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-10 00:45:51 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcdev.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:45:51 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Stay_Request__c.Bed_Number__c in DEV
+2026-07-10 00:45:55 | INFO     | httpx | HTTP Request: GET https://shrimadrajchandraloveandcareusainc--srlcuat.sandbox.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 00:45:55 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Stay_Request__c.Bed_Number__c in UAT
+2026-07-10 00:51:02 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-10 00:51:05 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 00:51:05 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 00:51:05 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 01:01:03 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-10 01:01:06 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 01:01:06 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 01:01:06 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 01:03:00 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-10 01:03:02 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 01:03:02 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 01:03:02 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 01:08:01 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-10 01:08:03 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 01:08:03 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 01:08:03 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 01:10:52 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-10 01:10:56 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 01:10:56 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 01:10:56 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 01:10:56 | INFO     | app.services.salesforce_service | Disconnecting DEV org...
+2026-07-10 01:10:56 | INFO     | app.services.salesforce_service | ✅ Disconnected from DEV org
+2026-07-10 01:11:03 | INFO     | app.api.orgs | OAuth connection request: DEV org 'Org-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-07-10 01:11:03 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-07-10 01:11:03 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-10 01:11:04 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 01:11:04 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-10 01:11:04 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-10 01:11:05 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-07-10 01:11:05 | INFO     | app.api.orgs | OAuth connection request: UAT org 'Org-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-07-10 01:11:05 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-07-10 01:11:05 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-10 01:11:06 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 01:11:06 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-10 01:11:06 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-10 01:11:07 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-07-10 01:11:46 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-10 01:11:47 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:11:48 | INFO     | app.services.salesforce_service | Found 45 relevant profiles in DEV
+2026-07-10 01:11:48 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-10 01:11:49 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:11:49 | INFO     | app.services.salesforce_service | Found 45 relevant profiles in UAT
+2026-07-10 01:12:02 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 45 profile pairs
+2026-07-10 01:12:02 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 45
+2026-07-10 01:12:02 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-10 01:12:03 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:12:03 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in DEV
+2026-07-10 01:12:05 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:12:05 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in UAT
+2026-07-10 01:12:11 | INFO     | app.api.agent | Agent approval received: 42 actions → UAT
+2026-07-10 01:12:11 | INFO     | app.services.agent_service | Processing approval for 42 actions → UAT
+2026-07-10 01:12:12 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:12:12 | INFO     | app.services.sync_service | Applying 42 approved actions to UAT
+2026-07-10 01:12:12 | INFO     | app.services.sync_service | Starting Metadata API Deployment Flow...
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Profile mapping resolved: {'System Administrator': {'is_custom': False, 'api_name': 'Admin'}, 'Minimum Access - API Only Integrations': {'is_custom': False, 'api_name': 'Minimum Access - API Only Integrations'}, 'Partner Community Login User': {'is_custom': False, 'api_name': 'Partner Community Login User'}, 'Customer Community User': {'is_custom': False, 'api_name': 'Customer Community User'}, 'Marketing User': {'is_custom': False, 'api_name': 'MarketingProfile'}, 'Standard User': {'is_custom': False, 'api_name': 'Standard'}, 'External Apps Login User': {'is_custom': False, 'api_name': 'External Apps Login User'}, 'Salesforce API Only System Integrations': {'is_custom': True, 'api_name': 'Salesforce API Only System Integrations'}, 'Gold Partner User': {'is_custom': False, 'api_name': 'Gold Partner User'}, 'Read Only': {'is_custom': True, 'api_name': 'Read Only'}, 'Customer Community Login User': {'is_custom': False, 'api_name': 'Customer Community Login User'}, 'Customer Community Plus Login User': {'is_custom': False, 'api_name': 'Customer Community Plus Login User'}, 'High Volume Customer Portal User': {'is_custom': False, 'api_name': 'High Volume Customer Portal User'}, 'Custom: Sales Profile': {'is_custom': True, 'api_name': 'Custom%3A Sales Profile'}, 'Contract Manager': {'is_custom': False, 'api_name': 'ContractManager'}, 'Authenticated Website (PLATFORM_PORTAL)': {'is_custom': False, 'api_name': 'PlatformPortal'}, 'External Identity User': {'is_custom': False, 'api_name': 'External Identity User'}, 'Minimum Access - Salesforce': {'is_custom': False, 'api_name': 'Minimum Access - Salesforce'}, 'Custom: Marketing Profile': {'is_custom': True, 'api_name': 'Custom%3A Marketing Profile'}, 'Customer Portal Manager Custom': {'is_custom': False, 'api_name': 'Customer Portal Manager Custom'}, 'Identity User': {'is_custom': False, 'api_name': 'Identity User'}, 'Anypoint Integration': {'is_custom': False, 'api_name': 'Anypoint Integration'}, 'B2B Reordering Portal Buyer Profile': {'is_custom': True, 'api_name': 'B2B Reordering Portal Buyer Profile'}, 'Silver Partner User': {'is_custom': False, 'api_name': 'Silver Partner User'}, 'High Volume Customer Portal': {'is_custom': False, 'api_name': 'HighVolumePortal'}, 'Authenticated Website (Platform_Portal_User)': {'is_custom': False, 'api_name': 'Authenticated Website'}, 'Solution Manager': {'is_custom': False, 'api_name': 'SolutionManager'}, 'Custom: Support Profile': {'is_custom': True, 'api_name': 'Custom%3A Support Profile'}, 'Customer Community Plus User': {'is_custom': False, 'api_name': 'Customer Community Plus User'}, 'Customer Portal Manager Standard': {'is_custom': False, 'api_name': 'Customer Portal Manager Standard'}, 'Partner Community User': {'is_custom': False, 'api_name': 'Partner Community User'}, 'Standard Platform User': {'is_custom': False, 'api_name': 'StandardAul'}, 'Work.com Only User': {'is_custom': False, 'api_name': 'Work%2Ecom Only User'}, 'Force.com - App Subscription User': {'is_custom': False, 'api_name': 'Force%2Ecom - App Subscription User'}, 'Partner App Subscription User': {'is_custom': False, 'api_name': 'Partner App Subscription User'}, 'Force.com - Free User': {'is_custom': False, 'api_name': 'Force%2Ecom - Free User'}, 'Analytics Cloud Security User': {'is_custom': False, 'api_name': 'Analytics Cloud Security User'}, 'Analytics Cloud Integration User': {'is_custom': False, 'api_name': 'Analytics Cloud Integration User'}, 'Cross Org Data Proxy User': {'is_custom': False, 'api_name': 'Cross Org Data Proxy User'}, 'Einstein Agent User': {'is_custom': False, 'api_name': 'Einstein Agent User'}, 'External Einstein Agent User': {'is_custom': False, 'api_name': 'External Einstein Agent User'}, 'Chinmay test profile': {'is_custom': True, 'api_name': 'Chinmay test profile'}}
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Analytics Cloud Integration User' → API name 'Analytics Cloud Integration User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Analytics Cloud Security User' → API name 'Analytics Cloud Security User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Anypoint Integration' → API name 'Anypoint Integration' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Authenticated Website (PLATFORM_PORTAL)' → API name 'PlatformPortal' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Authenticated Website (Platform_Portal_User)' → API name 'Authenticated Website' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Contract Manager' → API name 'ContractManager' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Cross Org Data Proxy User' → API name 'Cross Org Data Proxy User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community Login User' → API name 'Customer Community Login User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community Plus Login User' → API name 'Customer Community Plus Login User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community Plus User' → API name 'Customer Community Plus User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community User' → API name 'Customer Community User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Customer Portal Manager Custom' → API name 'Customer Portal Manager Custom' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Customer Portal Manager Standard' → API name 'Customer Portal Manager Standard' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Einstein Agent User' → API name 'Einstein Agent User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'External Apps Login User' → API name 'External Apps Login User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'External Einstein Agent User' → API name 'External Einstein Agent User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'External Identity User' → API name 'External Identity User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Force.com - App Subscription User' → API name 'Force%2Ecom - App Subscription User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Force.com - Free User' → API name 'Force%2Ecom - Free User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Gold Partner User' → API name 'Gold Partner User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'High Volume Customer Portal' → API name 'HighVolumePortal' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'High Volume Customer Portal User' → API name 'High Volume Customer Portal User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Identity User' → API name 'Identity User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Marketing User' → API name 'MarketingProfile' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Minimum Access - API Only Integrations' → API name 'Minimum Access - API Only Integrations' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Minimum Access - Salesforce' → API name 'Minimum Access - Salesforce' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Partner App Subscription User' → API name 'Partner App Subscription User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Partner Community Login User' → API name 'Partner Community Login User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Partner Community User' → API name 'Partner Community User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Silver Partner User' → API name 'Silver Partner User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Solution Manager' → API name 'SolutionManager' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Standard Platform User' → API name 'StandardAul' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Standard User' → API name 'Standard' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'System Administrator' → API name 'Admin' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Work.com Only User' → API name 'Work%2Ecom Only User' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'B2B Reordering Portal Buyer Profile' → API name 'B2B Reordering Portal Buyer Profile' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Chinmay test profile' → API name 'Chinmay test profile' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Custom: Marketing Profile' → API name 'Custom%3A Marketing Profile' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Custom: Sales Profile' → API name 'Custom%3A Sales Profile' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Custom: Support Profile' → API name 'Custom%3A Support Profile' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Read Only' → API name 'Read Only' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Building profile XML: 'Salesforce API Only System Integrations' → API name 'Salesforce API Only System Integrations' (1 actions)
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Built deployment ZIP with 42 profiles
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Deploying ZIP with testLevel=NoTestRun and rollbackOnError=False
+2026-07-10 01:12:43 | INFO     | app.services.sync_service | Polling deployment status for Job ID: 0AfdL00000dFlRZSA0
+2026-07-10 01:12:44 | INFO     | app.services.sync_service | Deploy poll status: Pending
+2026-07-10 01:12:47 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 01:12:50 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 01:12:53 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 01:12:56 | INFO     | app.services.sync_service | Deploy poll status: Succeeded
+2026-07-10 01:12:56 | INFO     | app.services.sync_service | Deployment finished with status: Succeeded
+2026-07-10 01:15:53 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-07-10 01:15:55 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-07-10 01:15:55 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-07-10 01:15:55 | INFO     | app.main | ✅ Platform ready.
+2026-07-10 01:16:32 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-10 01:16:32 | WARNING  | app.services.salesforce_service | Cannot fetch profiles. DEV is not connected.
+2026-07-10 01:16:32 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-10 01:16:32 | WARNING  | app.services.salesforce_service | Cannot fetch profiles. UAT is not connected.
+2026-07-10 01:16:44 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 45 profile pairs
+2026-07-10 01:16:44 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 45
+2026-07-10 01:16:44 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-10 01:16:44 | ERROR    | app.services.comparison_service | Failed to retrieve Account.UserID__c: No active connection to DEV org. Please connect first.
+2026-07-10 01:16:50 | INFO     | app.api.orgs | OAuth connection request: DEV org 'Org-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-07-10 01:16:50 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-07-10 01:16:50 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-10 01:16:51 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 01:16:51 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-10 01:16:51 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-10 01:16:53 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-07-10 01:16:53 | INFO     | app.api.orgs | OAuth connection request: UAT org 'Org-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-07-10 01:16:53 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-07-10 01:16:53 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-10 01:16:54 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-10 01:16:54 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-10 01:16:54 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-10 01:16:54 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-07-10 01:16:58 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-10 01:16:59 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:17:00 | INFO     | app.services.salesforce_service | Found 45 relevant profiles in DEV
+2026-07-10 01:17:00 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-10 01:17:01 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:17:01 | INFO     | app.services.salesforce_service | Found 45 relevant profiles in UAT
+2026-07-10 01:17:04 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 45 profile pairs
+2026-07-10 01:17:04 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 45
+2026-07-10 01:17:04 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-10 01:17:05 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:17:05 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in DEV
+2026-07-10 01:17:07 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:17:07 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in UAT
+2026-07-10 01:17:13 | INFO     | app.api.agent | Agent approval received: 42 actions → UAT
+2026-07-10 01:17:13 | INFO     | app.services.agent_service | Processing approval for 42 actions → UAT
+2026-07-10 01:17:14 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-10 01:17:14 | INFO     | app.services.sync_service | Applying 42 approved actions to UAT
+2026-07-10 01:17:14 | INFO     | app.services.sync_service | Starting Metadata API Deployment Flow...
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Profile mapping resolved: {'System Administrator': {'is_custom': False, 'api_name': 'Admin'}, 'Minimum Access - API Only Integrations': {'is_custom': False, 'api_name': 'Minimum Access - API Only Integrations'}, 'Partner Community Login User': {'is_custom': False, 'api_name': 'Partner Community Login User'}, 'Customer Community User': {'is_custom': False, 'api_name': 'Customer Community User'}, 'Marketing User': {'is_custom': False, 'api_name': 'MarketingProfile'}, 'Standard User': {'is_custom': False, 'api_name': 'Standard'}, 'External Apps Login User': {'is_custom': False, 'api_name': 'External Apps Login User'}, 'Salesforce API Only System Integrations': {'is_custom': True, 'api_name': 'Salesforce API Only System Integrations'}, 'Gold Partner User': {'is_custom': False, 'api_name': 'Gold Partner User'}, 'Read Only': {'is_custom': True, 'api_name': 'Read Only'}, 'Customer Community Login User': {'is_custom': False, 'api_name': 'Customer Community Login User'}, 'Customer Community Plus Login User': {'is_custom': False, 'api_name': 'Customer Community Plus Login User'}, 'High Volume Customer Portal User': {'is_custom': False, 'api_name': 'High Volume Customer Portal User'}, 'Custom: Sales Profile': {'is_custom': True, 'api_name': 'Custom%3A Sales Profile'}, 'Contract Manager': {'is_custom': False, 'api_name': 'ContractManager'}, 'Authenticated Website (PLATFORM_PORTAL)': {'is_custom': False, 'api_name': 'PlatformPortal'}, 'External Identity User': {'is_custom': False, 'api_name': 'External Identity User'}, 'Minimum Access - Salesforce': {'is_custom': False, 'api_name': 'Minimum Access - Salesforce'}, 'Custom: Marketing Profile': {'is_custom': True, 'api_name': 'Custom%3A Marketing Profile'}, 'Customer Portal Manager Custom': {'is_custom': False, 'api_name': 'Customer Portal Manager Custom'}, 'Identity User': {'is_custom': False, 'api_name': 'Identity User'}, 'Anypoint Integration': {'is_custom': False, 'api_name': 'Anypoint Integration'}, 'B2B Reordering Portal Buyer Profile': {'is_custom': True, 'api_name': 'B2B Reordering Portal Buyer Profile'}, 'Silver Partner User': {'is_custom': False, 'api_name': 'Silver Partner User'}, 'High Volume Customer Portal': {'is_custom': False, 'api_name': 'HighVolumePortal'}, 'Authenticated Website (Platform_Portal_User)': {'is_custom': False, 'api_name': 'Authenticated Website'}, 'Solution Manager': {'is_custom': False, 'api_name': 'SolutionManager'}, 'Custom: Support Profile': {'is_custom': True, 'api_name': 'Custom%3A Support Profile'}, 'Customer Community Plus User': {'is_custom': False, 'api_name': 'Customer Community Plus User'}, 'Customer Portal Manager Standard': {'is_custom': False, 'api_name': 'Customer Portal Manager Standard'}, 'Partner Community User': {'is_custom': False, 'api_name': 'Partner Community User'}, 'Standard Platform User': {'is_custom': False, 'api_name': 'StandardAul'}, 'Work.com Only User': {'is_custom': False, 'api_name': 'Work%2Ecom Only User'}, 'Force.com - App Subscription User': {'is_custom': False, 'api_name': 'Force%2Ecom - App Subscription User'}, 'Partner App Subscription User': {'is_custom': False, 'api_name': 'Partner App Subscription User'}, 'Force.com - Free User': {'is_custom': False, 'api_name': 'Force%2Ecom - Free User'}, 'Analytics Cloud Security User': {'is_custom': False, 'api_name': 'Analytics Cloud Security User'}, 'Analytics Cloud Integration User': {'is_custom': False, 'api_name': 'Analytics Cloud Integration User'}, 'Cross Org Data Proxy User': {'is_custom': False, 'api_name': 'Cross Org Data Proxy User'}, 'Einstein Agent User': {'is_custom': False, 'api_name': 'Einstein Agent User'}, 'External Einstein Agent User': {'is_custom': False, 'api_name': 'External Einstein Agent User'}, 'Chinmay test profile': {'is_custom': True, 'api_name': 'Chinmay test profile'}}
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Analytics Cloud Integration User' → API name 'Analytics Cloud Integration User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Analytics Cloud Security User' → API name 'Analytics Cloud Security User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Anypoint Integration' → API name 'Anypoint Integration' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Authenticated Website (PLATFORM_PORTAL)' → API name 'PlatformPortal' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Authenticated Website (Platform_Portal_User)' → API name 'Authenticated Website' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Contract Manager' → API name 'ContractManager' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Cross Org Data Proxy User' → API name 'Cross Org Data Proxy User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community Login User' → API name 'Customer Community Login User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community Plus Login User' → API name 'Customer Community Plus Login User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community Plus User' → API name 'Customer Community Plus User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Customer Community User' → API name 'Customer Community User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Customer Portal Manager Custom' → API name 'Customer Portal Manager Custom' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Customer Portal Manager Standard' → API name 'Customer Portal Manager Standard' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Einstein Agent User' → API name 'Einstein Agent User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'External Apps Login User' → API name 'External Apps Login User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'External Einstein Agent User' → API name 'External Einstein Agent User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'External Identity User' → API name 'External Identity User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Force.com - App Subscription User' → API name 'Force%2Ecom - App Subscription User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Force.com - Free User' → API name 'Force%2Ecom - Free User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Gold Partner User' → API name 'Gold Partner User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'High Volume Customer Portal' → API name 'HighVolumePortal' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'High Volume Customer Portal User' → API name 'High Volume Customer Portal User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Identity User' → API name 'Identity User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Marketing User' → API name 'MarketingProfile' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Minimum Access - API Only Integrations' → API name 'Minimum Access - API Only Integrations' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Minimum Access - Salesforce' → API name 'Minimum Access - Salesforce' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Partner App Subscription User' → API name 'Partner App Subscription User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Partner Community Login User' → API name 'Partner Community Login User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Partner Community User' → API name 'Partner Community User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Silver Partner User' → API name 'Silver Partner User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Solution Manager' → API name 'SolutionManager' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Standard Platform User' → API name 'StandardAul' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Standard User' → API name 'Standard' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'System Administrator' → API name 'Admin' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Work.com Only User' → API name 'Work%2Ecom Only User' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'B2B Reordering Portal Buyer Profile' → API name 'B2B Reordering Portal Buyer Profile' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Chinmay test profile' → API name 'Chinmay test profile' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Custom: Marketing Profile' → API name 'Custom%3A Marketing Profile' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Custom: Sales Profile' → API name 'Custom%3A Sales Profile' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Custom: Support Profile' → API name 'Custom%3A Support Profile' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Read Only' → API name 'Read Only' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Building profile XML: 'Salesforce API Only System Integrations' → API name 'Salesforce API Only System Integrations' (1 actions)
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Built deployment ZIP with 42 profiles
+2026-07-10 01:17:40 | INFO     | app.services.sync_service | Deploying ZIP with testLevel=NoTestRun and rollbackOnError=False
+2026-07-10 01:17:41 | INFO     | app.services.sync_service | Polling deployment status for Job ID: 0AfdL00000dFhMMSA0
+2026-07-10 01:17:41 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 01:17:44 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 01:17:47 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 01:17:51 | INFO     | app.services.sync_service | Deploy poll status: InProgress
+2026-07-10 01:17:54 | INFO     | app.services.sync_service | Deploy poll status: Succeeded
+2026-07-10 01:17:54 | INFO     | app.services.sync_service | Deployment finished with status: Succeeded

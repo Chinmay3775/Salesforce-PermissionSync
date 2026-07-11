@@ -10,7 +10,7 @@ from datetime import datetime
 from typing import Dict, Any, List, Optional
 import pandas as pd
 
-from app.services.comparison_service import compare_environments, get_drift_report
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 
@@ -38,20 +38,8 @@ def generate_report(
         title = f"{report_type.title()} Report - {source_env or 'All'} vs {target_env or 'All'}"
 
     # Get data based on report type
-    if report_type == "comparison" and source_env and target_env:
-        data = compare_environments(source_env, target_env)
-        rows = data.get("details", [])
-    elif report_type == "drift" and source_env and target_env:
-        data = get_drift_report(source_env, target_env)
-        rows = data.get("items", [])
-    else:
-        # Generate a full comparison across all env pairs
-        rows = []
-        for src, tgt in [("DEV", "UAT"), ("UAT", "PROD"), ("DEV", "PROD")]:
-            result = compare_environments(src, tgt)
-            for item in result.get("details", []):
-                item["comparison"] = f"{src} vs {tgt}"
-                rows.append(item)
+    # (Legacy full-org reports are deprecated. For now, this returns an empty report.)
+    rows = []
 
     # Flatten for tabular output
     flat_rows = []

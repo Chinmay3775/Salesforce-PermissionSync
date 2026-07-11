@@ -5,13 +5,13 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: '/api',
-  timeout: 30000,
+  timeout: 60000, // 60s — metadata fetches can be slow on large orgs
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Request interceptor for logging
+// Response interceptor for logging
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -24,25 +24,28 @@ api.interceptors.response.use(
 export const connectOrg = (data) => api.post('/connect-org', data);
 export const getEnvironmentStatus = () => api.get('/environment-status');
 export const disconnectOrg = (data) => api.post('/disconnect-org', data);
+export const validateConnection = (data) => api.post('/validate-connection', data);
 
-// ============ Metadata ============
-export const fetchMetadata = (data) => api.post('/fetch-metadata', data);
-export const getMetadataTree = (environment) => api.get(`/metadata-tree?environment=${environment}`);
-export const getMetadataSnapshot = (environment, profile) => {
-  let url = `/metadata-snapshot?environment=${environment}`;
-  if (profile) url += `&profile=${profile}`;
-  return api.get(url);
-};
+// ============ Profiles ============
+/** Fetch all Profile names from a connected org.
+ *  @param {string} environment  "DEV" | "UAT" | "PROD"
+ *  @returns {{ environment, profiles: string[], count: number }}
+ */
+export const getProfiles = (environment) =>
+  api.get('/profiles', { params: { environment } });
 
-// ============ Comparison ============
-export const compareEnvironments = (data) => api.post('/compare-environments', data);
-export const getDriftReport = (sourceEnv, targetEnv) =>
-  api.get(`/drift-report?source_env=${sourceEnv}&target_env=${targetEnv}`);
-export const getComparisonSummary = () => api.get('/comparison-summary');
-
-// ============ Sync ============
-export const syncPermissions = (data) => api.post('/sync-permissions', data);
-export const getSyncHistory = () => api.get('/sync-history');
+// ============ Agent / Compare Workflow ============
+/**
+ * Run the comparison agent.
+ * @param {{
+ *   source_env: string,
+ *   target_env: string,
+ *   deployment_sheet: {type:string, name:string}[],
+ *   profile_mapping?: {source_profile:string, target_profile:string}[]
+ * }} data
+ */
+export const runAgent = (data) => api.post('/agent/run', data);
+export const approveAgentActions = (data) => api.post('/agent/approve', data);
 
 // ============ Reports ============
 export const generateReport = (data) => api.post('/generate-report', data);
@@ -52,6 +55,5 @@ export const downloadReport = (reportId) =>
 
 // ============ Health ============
 export const checkHealth = () => api.get('/health');
-export const validateConnection = (data) => api.post('/validate-connection', data);
 
 export default api;

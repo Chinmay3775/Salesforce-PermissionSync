@@ -1,16 +1,14 @@
 /**
- * Dashboard — Main overview with environment health, drift summaries, and quick actions.
+ * Dashboard — Main overview and entry point for the Agent Workflow.
  */
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
-  Shield, AlertTriangle, GitCompareArrows, RefreshCcw,
-  FileBarChart, TrendingUp, Activity, CheckCircle2,
-  XCircle, Clock, ArrowRight, Zap, Database, Link2
+  Shield, Bot, Activity, TrendingUp, Zap, FileBarChart
 } from 'lucide-react';
-import { useOrgStore, useComparisonStore } from '../store';
-import { EnvironmentCard, DriftSummaryCard } from '../components/StatusBadge';
+import { useOrgStore } from '../store';
+import { EnvironmentCard } from '../components/StatusBadge';
 
 const container = {
   hidden: { opacity: 0 },
@@ -25,7 +23,6 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const environments = useOrgStore((s) => s.environments);
   const fetchStatus = useOrgStore((s) => s.fetchStatus);
-  const summary = useComparisonStore((s) => s.summaries?.[0]);
   useEffect(() => { fetchStatus(); }, []);
 
   return (
@@ -33,18 +30,32 @@ export default function Dashboard() {
       {/* Page Header */}
       <motion.div variants={item} className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
-            Permission Governance
+          <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2" style={{ color: 'var(--color-text-primary)' }}>
+            <Bot className="text-blue-400" />
+            Deployment-Based Permission Agent
           </h2>
           <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary)' }}>
-            Monitor, compare, and synchronize Salesforce permissions across environments
+            Intelligently evaluate and deploy specific Salesforce component permissions
           </p>
         </div>
         <div className="flex gap-2">
-          <QuickAction icon={GitCompareArrows} label="Compare" onClick={() => navigate('/comparison')} />
-          <QuickAction icon={RefreshCcw} label="Sync" onClick={() => navigate('/sync')} />
-          <QuickAction icon={FileBarChart} label="Report" onClick={() => navigate('/reports')} />
+          <QuickAction icon={Bot} label="Run Agent" onClick={() => navigate('/agent')} />
         </div>
+      </motion.div>
+
+      {/* Top Stats Cards */}
+      <motion.div variants={item} className="grid grid-cols-4 gap-4">
+        {[
+          { label: 'Connected Orgs', value: environments.filter(e => e.connected).length },
+          { label: 'Configured Envs', value: environments.length },
+          { label: 'Total Metadata Cached', value: environments.reduce((sum, e) => sum + (e.metadata_count || 0), 0) },
+          { label: 'Agent Status', value: 'Ready' }
+        ].map((stat, i) => (
+          <div key={i} className="card p-4 flex flex-col justify-center">
+            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-tertiary)' }}>{stat.label}</span>
+            <span className="text-2xl font-bold mt-2" style={{ color: 'var(--color-text-primary)' }}>{stat.value}</span>
+          </div>
+        ))}
       </motion.div>
 
       {/* Environment Health Cards */}
@@ -68,35 +79,33 @@ export default function Dashboard() {
             ))
           ) : (
             <div className="col-span-3 text-center py-10" style={{ color: 'var(--color-text-muted)' }}>
-              No environments configured. Go to <span className="font-bold cursor-pointer" style={{ color: 'var(--color-accent-blue)' }} onClick={() => navigate('/connections')}>Org Connections</span> to start.
+              No environments configured. Go to <span className="font-bold cursor-pointer transition-colors" style={{ color: 'var(--color-accent-blue)' }} onClick={() => navigate('/connections')}>Org Connections</span> to start.
             </div>
           )}
         </div>
       </motion.div>
 
-      {/* Drift Summary Metrics */}
-      <motion.div variants={item}>
-        <h3 className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--color-text-tertiary)' }}>
-          Drift Overview
-        </h3>
-        <div className="grid grid-cols-4 gap-4">
-          <DriftSummaryCard title="Critical Drifts" value={summary?.critical_drifts || 0} severity="Critical" icon={AlertTriangle} />
-          <DriftSummaryCard title="High Severity" value={summary?.high_drifts || 0} severity="High" icon={Shield} />
-          <DriftSummaryCard title="Medium Issues" value={summary?.medium_drifts || 0} severity="Medium" icon={Activity} />
-          <DriftSummaryCard title="Low Priority" value={summary?.low_drifts || 0} severity="Low" icon={TrendingUp} />
-        </div>
-      </motion.div>
-
-      {/* Bottom Grid — Activity */}
+      {/* Bottom Grid — Getting Started */}
       <motion.div variants={item} className="grid grid-cols-1 gap-4">
-        {/* Recent Activity */}
-        <div className="glass-card p-5">
-          <h3 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: 'var(--color-text-tertiary)' }}>
-            Recent Activity
+        <div className="card p-6">
+          <h3 className="text-sm font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--color-accent-blue)' }}>
+            Getting Started with the Agent
           </h3>
-          <div className="space-y-3">
-            <p className="text-sm py-4 text-center" style={{ color: 'var(--color-text-muted)' }}>No recent activity to display.</p>
-          </div>
+          <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
+            The new agent workflow replaces full-org syncs with targeted component deployments.
+          </p>
+          <ul className="text-sm space-y-2 list-disc list-inside" style={{ color: 'var(--color-text-tertiary)' }}>
+            <li>Connect your Source and Target orgs.</li>
+            <li>Launch the <strong style={{ color: 'var(--color-text-primary)' }}>Agent Orchestrator</strong>.</li>
+            <li>Add the specific components (e.g. ApexClass) you want to deploy permissions for.</li>
+            <li>Review the AI-generated impact plan and deploy your changes cleanly.</li>
+          </ul>
+          <button 
+            onClick={() => navigate('/agent')}
+            className="btn-primary mt-6"
+          >
+            Launch Agent
+          </button>
         </div>
       </motion.div>
     </motion.div>

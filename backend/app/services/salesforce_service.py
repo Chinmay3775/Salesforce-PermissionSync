@@ -7,7 +7,7 @@ SOQL queries are executed through simple-salesforce using the OAuth access token
 """
 
 import logging
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from datetime import datetime
 from simple_salesforce import Salesforce
 
@@ -297,3 +297,66 @@ def disconnect_org(environment: str) -> bool:
 
     logger.info(f"✅ Disconnected from {environment} org")
     return True
+
+
+def fetch_profiles(environment: str) -> List[str]:
+    """
+    Fetch all relevant Profile names from the specified environment.
+    Filters out system/internal profiles based on UserLicense.
+    """
+    sf = get_connection(environment)
+    if not sf:
+        logger.warning(f"Cannot fetch profiles. {environment} is not connected.")
+        return []
+
+    try:
+        from collections import defaultdict
+        
+        # Fetching from PermissionSet to get IsCustom and License Definition Key
+        ps_query = "SELECT Profile.Name, Profile.UserLicense.LicenseDefinitionKey, IsCustom FROM PermissionSet WHERE ProfileId != null"
+        ps_result = sf.query_all(ps_query)
+        
+        records = ps_result.get("records", [])
+        
+        # First pass: count name occurrences
+        name_counts = defaultdict(int)
+        for record in records:
+            prof = record.get("Profile")
+            if prof and prof.get("Name"):
+                name_counts[prof.get("Name")] += 1
+                
+        profiles_dict = {}
+        display_names_used = set()
+        for record in records:
+            prof = record.get("Profile")
+            if prof:
+                name = prof.get("Name")
+                is_custom = record.get("IsCustom", False)
+                license_key = prof.get("UserLicense", {}).get("LicenseDefinitionKey") if prof.get("UserLicense") else None
+                prof_id = record.get("ProfileId")
+                
+                if name:
+                    display_name = name
+                    # If this profile name appears multiple times, append the license key to disambiguate
+                    if name_counts[name] > 1 and license_key:
+                        display_name = f"{name} ({license_key})"
+                        
+                    # Absolute uniqueness fallback: append ProfileId if STILL a collision
+                    if display_name in display_names_used:
+                        display_name = f"{display_name} [{prof_id}]"
+                        
+                    display_names_used.add(display_name)
+                    
+                    if display_name not in profiles_dict:
+                        profiles_dict[display_name] = {
+                            "name": display_name,
+                            "is_custom": is_custom
+                        }
+                        
+        profiles = list(profiles_dict.values())
+        profiles.sort(key=lambda x: x["name"])
+        logger.info(f"Found {len(profiles)} relevant profiles in {environment}")
+        return profiles
+    except Exception as e:
+        logger.error(f"Failed to fetch profiles from {environment}: {str(e)}")
+        raise ValueError(f"Failed to fetch profiles: {str(e)}")

@@ -1,0 +1,144 @@
+2026-06-30 16:06:03 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-06-30 16:06:03 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-06-30 16:06:03 | INFO     | app.main | ✅ Platform ready.
+2026-06-30 18:16:23 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-06-30 18:16:23 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-06-30 18:16:23 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-06-30 18:16:24 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-06-30 18:16:24 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-30 18:16:24 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-30 18:16:26 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-06-30 18:16:55 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-06-30 18:16:55 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-06-30 18:16:55 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-06-30 18:16:56 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-06-30 18:16:56 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-06-30 18:16:56 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-06-30 18:16:57 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-06-30 18:18:57 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-06-30 18:18:58 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:18:58 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-06-30 18:18:59 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-06-30 18:18:59 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-06-30 18:19:00 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:19:00 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-06-30 18:19:00 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-06-30 18:19:26 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-06-30 18:19:26 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-06-30 18:19:26 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-06-30 18:19:27 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:19:27 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in DEV
+2026-06-30 18:19:30 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:19:30 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in UAT
+2026-06-30 18:19:41 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-06-30 18:19:41 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-06-30 18:19:42 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:19:42 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-06-30 18:19:45 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'System Administrator'
+2026-06-30 18:19:45 | INFO     | app.services.sync_service | Sync complete: 1 succeeded, 0 failed
+2026-06-30 18:25:25 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-06-30 18:25:27 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:25:27 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-06-30 18:25:28 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-06-30 18:25:28 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-06-30 18:25:30 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:25:30 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-06-30 18:25:31 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-06-30 18:26:07 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-06-30 18:26:07 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-06-30 18:26:07 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-06-30 18:26:11 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:26:11 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in DEV
+2026-06-30 18:26:19 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:26:19 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in UAT
+2026-06-30 18:26:30 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-06-30 18:26:30 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-06-30 18:26:31 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-30 18:26:31 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-06-30 18:26:35 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'Marketing User'
+2026-06-30 18:26:35 | INFO     | app.services.sync_service | Sync complete: 1 succeeded, 0 failed
+2026-07-03 20:57:53 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-03 20:57:56 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 401 Unauthorized"
+2026-07-03 20:57:56 | WARNING  | app.auth.salesforce_oauth | Token validation failed: status=401
+2026-07-03 20:57:56 | WARNING  | app.services.salesforce_service | Token expired for DEV, attempting auto-reconnect...
+2026-07-03 20:57:56 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-07-03 20:57:56 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-03 20:57:58 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-03 20:57:58 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-03 20:57:58 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-07-03 20:58:01 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-07-03 20:58:01 | INFO     | app.services.salesforce_service | Auto-reconnect successful for DEV
+2026-07-03 20:58:01 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-07-03 20:58:02 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-07-03 20:58:02 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-03 20:58:03 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 401 Unauthorized"
+2026-07-03 20:58:03 | WARNING  | app.auth.salesforce_oauth | Token validation failed: status=401
+2026-07-03 20:58:03 | WARNING  | app.services.salesforce_service | Token expired for UAT, attempting auto-reconnect...
+2026-07-03 20:58:03 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-07-03 20:58:03 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-07-03 20:58:04 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-07-03 20:58:04 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-03 20:58:04 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-07-03 20:58:06 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-07-03 20:58:06 | INFO     | app.services.salesforce_service | Auto-reconnect successful for UAT
+2026-07-03 20:58:06 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-07-03 20:58:06 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-07-03 20:58:25 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-07-03 20:58:25 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-07-03 20:58:25 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-03 20:58:27 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 20:58:27 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in DEV
+2026-07-03 20:58:30 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 20:58:30 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in UAT
+2026-07-03 21:01:38 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-07-03 21:01:38 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-07-03 21:01:38 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-03 21:01:40 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 21:01:40 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in DEV
+2026-07-03 21:01:43 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 21:01:44 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in UAT
+2026-07-03 21:01:49 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-07-03 21:01:49 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-07-03 21:01:50 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 21:01:50 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-07-03 21:01:50 | ERROR    | app.services.sync_service | ❌ Failed to sync ApexClass:AccountUserIdUpdater for profile 'Anypoint Integration': Session.request() got an unexpected keyword argument 'additional_headers'
+2026-07-03 21:01:50 | INFO     | app.services.sync_service | Sync complete: 0 succeeded, 1 failed
+2026-07-03 21:02:23 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-07-03 21:02:23 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-07-03 21:02:25 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 21:02:25 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-07-03 21:02:25 | ERROR    | app.services.sync_service | ❌ Failed to sync ApexClass:AccountUserIdUpdater for profile 'Anypoint Integration': Session.request() got an unexpected keyword argument 'additional_headers'
+2026-07-03 21:02:25 | INFO     | app.services.sync_service | Sync complete: 0 succeeded, 1 failed
+2026-07-03 21:02:40 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-07-03 21:02:41 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 21:02:41 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-07-03 21:02:42 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-07-03 21:02:42 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-07-03 21:02:43 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 21:02:43 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-07-03 21:02:43 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-07-03 21:02:45 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-07-03 21:02:45 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-07-03 21:02:45 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-07-03 21:02:47 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 21:02:47 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in DEV
+2026-07-03 21:02:50 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 21:02:50 | INFO     | app.services.metadata_service | Retrieving permissions for ApexClass: AccountUserIdUpdater in UAT
+2026-07-03 21:02:53 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-07-03 21:02:53 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-07-03 21:02:54 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-07-03 21:02:54 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-07-03 21:02:55 | ERROR    | app.services.sync_service | ❌ Failed to sync ApexClass:AccountUserIdUpdater for profile 'Anypoint Integration': Session.request() got an unexpected keyword argument 'additional_headers'
+2026-07-03 21:02:55 | INFO     | app.services.sync_service | Sync complete: 0 succeeded, 1 failed
+2026-07-03 23:03:02 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.

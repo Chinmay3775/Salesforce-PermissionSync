@@ -4,20 +4,15 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  LayoutDashboard, Link2, Database, GitCompareArrows,
-  AlertTriangle, RefreshCcw, FileBarChart, ChevronLeft,
+  LayoutDashboard, Link2, Bot, FileBarChart, ChevronLeft,
   ChevronRight, Shield, Zap
 } from 'lucide-react';
 import { useUIStore } from '../store';
 
 const navItems = [
-  { path: '/', label: 'Dashboard', icon: LayoutDashboard },
+  { path: '/', label: 'Dashboard',           icon: LayoutDashboard },
   { path: '/connections', label: 'Connections', icon: Link2 },
-  { path: '/metadata', label: 'Metadata', icon: Database },
-  { path: '/comparison', label: 'Comparison', icon: GitCompareArrows },
-  { path: '/drift', label: 'Drift Analysis', icon: AlertTriangle },
-  { path: '/sync', label: 'Sync Center', icon: RefreshCcw },
-  { path: '/reports', label: 'Reports', icon: FileBarChart },
+  { path: '/agent', label: 'Compare & Sync',  icon: Bot },
 ];
 
 export default function Sidebar() {
@@ -29,7 +24,7 @@ export default function Sidebar() {
       className="fixed left-0 top-0 h-screen flex flex-col z-50"
       style={{
         width: collapsed ? 'var(--sidebar-collapsed)' : 'var(--sidebar-width)',
-        background: 'var(--gradient-sidebar)',
+        background: 'var(--color-bg-primary)',
         borderRight: '1px solid var(--color-border-primary)',
       }}
       animate={{ width: collapsed ? 68 : 260 }}
@@ -37,8 +32,8 @@ export default function Sidebar() {
     >
       {/* Logo Section */}
       <div className="flex items-center gap-3 px-4 h-[60px] border-b" style={{ borderColor: 'var(--color-border-primary)' }}>
-        <div className="flex items-center justify-center w-9 h-9 rounded-lg" style={{ background: 'var(--gradient-primary)' }}>
-          <Shield size={20} className="text-white" />
+        <div className="flex items-center justify-center w-8 h-8 rounded-md" style={{ background: 'var(--color-accent-blue)' }}>
+          <Shield size={18} className="text-white" />
         </div>
         <AnimatePresence>
           {!collapsed && (
@@ -49,11 +44,11 @@ export default function Sidebar() {
               transition={{ duration: 0.2 }}
               className="flex flex-col"
             >
-              <span className="text-sm font-bold tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
+              <span className="text-sm font-semibold tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
                 PermissionSync
               </span>
-              <span className="text-[10px] font-medium tracking-wider uppercase" style={{ color: 'var(--color-accent-cyan)' }}>
-                Salesforce DevOps
+              <span className="text-[10px] font-medium uppercase" style={{ color: 'var(--color-text-muted)' }}>
+                Enterprise
               </span>
             </motion.div>
           )}
@@ -61,7 +56,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 py-4 px-2 overflow-y-auto scrollbar-thin">
+      <nav className={`flex-1 py-4 px-2 scrollbar-thin overflow-x-hidden ${collapsed ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
         <div className="space-y-1">
           {navItems.map((item) => (
             <SidebarLink key={item.path} item={item} collapsed={collapsed} />
@@ -129,9 +124,10 @@ function SidebarLink({ item, collapsed }) {
       to={item.path}
       className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative no-underline"
       style={{
-        background: isActive ? 'rgba(59, 130, 246, 0.12)' : 'transparent',
+        background: isActive ? 'rgba(37, 99, 235, 0.1)' : 'transparent',
         color: isActive ? 'var(--color-accent-blue)' : 'var(--color-text-secondary)',
-        borderLeft: isActive ? '2px solid var(--color-accent-blue)' : '2px solid transparent',
+        borderLeft: isActive ? '3px solid var(--color-accent-blue)' : '3px solid transparent',
+        borderRadius: isActive ? '0 6px 6px 0' : '0',
       }}
       onMouseEnter={(e) => {
         if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.04)';

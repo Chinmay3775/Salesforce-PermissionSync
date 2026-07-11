@@ -78,7 +78,7 @@ export default function OAuthCallback() {
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="glass-card p-10 max-w-md w-full space-y-6"
+        className="card p-10 max-w-md w-full space-y-6"
       >
         {status === 'processing' && (
           <>

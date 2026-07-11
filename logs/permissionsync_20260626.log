@@ -1,0 +1,208 @@
+2026-06-26 20:10:48 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-06-26 20:10:48 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-06-26 20:10:48 | INFO     | app.main | ✅ Platform ready.
+2026-06-26 20:13:40 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-06-26 20:13:40 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-06-26 20:16:39 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.lightning.force.com/
+2026-06-26 20:16:39 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-06-26 20:16:39 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token
+2026-06-26 20:16:40 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:16:40 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 1): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:16:40 | INFO     | app.auth.salesforce_oauth | Retrying in 1.5s...
+2026-06-26 20:16:42 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:16:42 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 2): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:16:42 | INFO     | app.auth.salesforce_oauth | Retrying in 2.2s...
+2026-06-26 20:16:46 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:16:46 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 3): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:16:46 | ERROR    | app.api.orgs | OAuth error for UAT: unknown_error — Authentication failed: No description provided
+2026-06-26 20:16:51 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.lightning.force.com/
+2026-06-26 20:16:51 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-06-26 20:16:51 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token
+2026-06-26 20:16:52 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:16:52 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 1): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:16:52 | INFO     | app.auth.salesforce_oauth | Retrying in 1.5s...
+2026-06-26 20:16:54 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:16:54 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 2): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:16:54 | INFO     | app.auth.salesforce_oauth | Retrying in 2.2s...
+2026-06-26 20:16:58 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:16:58 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 3): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:16:58 | ERROR    | app.api.orgs | OAuth error for UAT: unknown_error — Authentication failed: No description provided
+2026-06-26 20:17:00 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.lightning.force.com
+2026-06-26 20:17:00 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-06-26 20:17:00 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token
+2026-06-26 20:17:01 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:17:01 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 1): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:17:01 | INFO     | app.auth.salesforce_oauth | Retrying in 1.5s...
+2026-06-26 20:17:04 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:17:04 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 2): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:17:04 | INFO     | app.auth.salesforce_oauth | Retrying in 2.2s...
+2026-06-26 20:17:07 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:17:07 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 3): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:17:07 | ERROR    | app.api.orgs | OAuth error for UAT: unknown_error — Authentication failed: No description provided
+2026-06-26 20:17:47 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.lightning.force.com
+2026-06-26 20:17:47 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-06-26 20:17:47 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token
+2026-06-26 20:17:48 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:17:48 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 1): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:17:48 | INFO     | app.auth.salesforce_oauth | Retrying in 1.5s...
+2026-06-26 20:17:50 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:17:50 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 2): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:17:50 | INFO     | app.auth.salesforce_oauth | Retrying in 2.2s...
+2026-06-26 20:17:53 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.lightning.force.com/services/oauth2/token "HTTP/1.1 302 Found"
+2026-06-26 20:17:53 | ERROR    | app.auth.salesforce_oauth | OAuth error (attempt 3): status=302, error=unknown_error, description=No description provided
+2026-06-26 20:17:53 | ERROR    | app.api.orgs | OAuth error for UAT: unknown_error — Authentication failed: No description provided
+2026-06-26 20:20:02 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-06-26 20:20:02 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-06-26 20:20:02 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-06-26 20:20:04 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-06-26 20:20:04 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-26 20:20:04 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-26 20:20:05 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-06-26 20:21:06 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-06-26 20:29:33 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-06-26 20:29:33 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-06-26 20:29:33 | INFO     | app.main | ✅ Platform ready.
+2026-06-26 20:31:17 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-06-26 20:31:17 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-06-26 20:31:17 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-06-26 20:31:19 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-06-26 20:31:19 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-26 20:31:20 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-26 20:31:22 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-06-26 20:31:52 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-06-26 20:31:52 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-06-26 20:31:52 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-06-26 20:31:59 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-06-26 20:31:59 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-06-26 20:31:59 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-06-26 20:32:06 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-06-26 20:32:23 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-06-26 20:32:30 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:32:30 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-06-26 20:32:31 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-06-26 20:32:31 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-06-26 20:32:38 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:32:38 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-06-26 20:32:38 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-06-26 20:32:47 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-06-26 20:35:10 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-06-26 20:35:10 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-06-26 20:35:10 | INFO     | app.main | ✅ Platform ready.
+2026-06-26 20:35:48 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-06-26 20:35:48 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-06-26 20:35:48 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-06-26 20:35:50 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-06-26 20:35:50 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-26 20:35:50 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-26 20:35:51 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-06-26 20:36:14 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-06-26 20:36:14 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-06-26 20:36:14 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-06-26 20:36:16 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-06-26 20:36:16 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-06-26 20:36:16 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-06-26 20:36:16 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-06-26 20:36:59 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-06-26 20:37:01 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:37:01 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-06-26 20:37:01 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-06-26 20:37:01 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-06-26 20:37:02 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:37:02 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-06-26 20:37:02 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-06-26 20:37:20 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-06-26 20:37:20 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-06-26 20:37:20 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-06-26 20:37:21 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:37:21 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: UserID__c in DEV
+2026-06-26 20:37:22 | ERROR    | app.services.metadata_service | Error during component metadata retrieval: Malformed request https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v59.0/query/?q=%0A++++++++++++++++SELECT+ParentId%2C+SobjectType%2C+Field%2C+PermissionsRead%2C+PermissionsEdit+%0A++++++++++++++++FROM+FieldPermissions%0A++++++++++++++++WHERE+Field+LIKE+%27%25.UserID__c%27%0A++++++++++++. Response content: [{'message': "\n                WHERE Field LIKE '%.UserID__c'\n                      ^\nERROR at Row:3:Column:23\ninvalid operator on id field", 'errorCode': 'INVALID_QUERY_FILTER_OPERATOR'}]
+2026-06-26 20:37:22 | ERROR    | app.services.comparison_service | Failed to retrieve UserID__c: Failed to retrieve metadata: Malformed request https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v59.0/query/?q=%0A++++++++++++++++SELECT+ParentId%2C+SobjectType%2C+Field%2C+PermissionsRead%2C+PermissionsEdit+%0A++++++++++++++++FROM+FieldPermissions%0A++++++++++++++++WHERE+Field+LIKE+%27%25.UserID__c%27%0A++++++++++++. Response content: [{'message': "\n                WHERE Field LIKE '%.UserID__c'\n                      ^\nERROR at Row:3:Column:23\ninvalid operator on id field", 'errorCode': 'INVALID_QUERY_FILTER_OPERATOR'}]
+2026-06-26 20:38:46 | INFO     | app.main | 🛑 Shutting down Salesforce PermissionSync Platform.
+2026-06-26 20:38:49 | INFO     | app.main | 🚀 Starting Salesforce PermissionSync Platform...
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/raw_xml
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/parsed_json
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: storage/DEV/reports
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/raw_xml
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/parsed_json
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: storage/UAT/reports
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/raw_xml
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/parsed_json
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: storage/PROD/reports
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: logs
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: temp
+2026-06-26 20:38:49 | INFO     | app.main |   ✓ Ensured directory: exports
+2026-06-26 20:38:49 | INFO     | app.main | ✅ Platform ready.
+2026-06-26 20:39:44 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-06-26 20:39:44 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-06-26 20:39:47 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-06-26 20:39:47 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-06-26 20:39:47 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-06-26 20:39:47 | ERROR    | app.services.comparison_service | Failed to retrieve Account.UserID__c: No active connection to DEV org. Please connect first.
+2026-06-26 20:40:33 | INFO     | app.api.orgs | OAuth connection request: DEV org 'PermSync-DEV' → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/
+2026-06-26 20:40:33 | INFO     | app.services.salesforce_service | Connecting to DEV org via OAuth 2.0 Client Credentials
+2026-06-26 20:40:33 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-06-26 20:40:35 | INFO     | httpx | HTTP Request: POST https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-06-26 20:40:35 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-26 20:40:35 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com
+2026-06-26 20:40:36 | INFO     | app.services.salesforce_service | ✅ Successfully connected to DEV org (Thinqloud) via OAuth 2.0 Client Credentials
+2026-06-26 20:40:51 | INFO     | app.api.orgs | OAuth connection request: UAT org 'PermSync-UAT' → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/
+2026-06-26 20:40:51 | INFO     | app.services.salesforce_service | Connecting to UAT org via OAuth 2.0 Client Credentials
+2026-06-26 20:40:51 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication via https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token
+2026-06-26 20:40:53 | INFO     | httpx | HTTP Request: POST https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/oauth2/token "HTTP/1.1 200 OK"
+2026-06-26 20:40:53 | INFO     | app.auth.salesforce_oauth | OAuth Client Credentials authentication successful → instance: https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-06-26 20:40:53 | INFO     | app.services.salesforce_service | OAuth token acquired → https://keripalechinmayuat-dev-ed.develop.my.salesforce.com
+2026-06-26 20:40:54 | INFO     | app.services.salesforce_service | ✅ Successfully connected to UAT org (D.K.T.E) via OAuth 2.0 Client Credentials
+2026-06-26 20:41:12 | INFO     | app.api.orgs | Fetching profiles for DEV
+2026-06-26 20:41:13 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:41:13 | INFO     | app.services.salesforce_service | Fetching profiles from DEV org...
+2026-06-26 20:41:14 | INFO     | app.services.salesforce_service | Found 44 profiles in DEV
+2026-06-26 20:41:14 | INFO     | app.api.orgs | Fetching profiles for UAT
+2026-06-26 20:41:15 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:41:15 | INFO     | app.services.salesforce_service | Fetching profiles from UAT org...
+2026-06-26 20:41:15 | INFO     | app.services.salesforce_service | Found 44 profiles in UAT
+2026-06-26 20:41:25 | INFO     | app.api.agent | Agent triggered: DEV → UAT | 1 components | 1 profile pairs
+2026-06-26 20:41:25 | INFO     | app.services.agent_service | Starting Agent Run: DEV → UAT | Profile pairs: 1
+2026-06-26 20:41:25 | INFO     | app.services.comparison_service | Comparing components between DEV and UAT
+2026-06-26 20:41:26 | INFO     | httpx | HTTP Request: GET https://keripalechinmay3775dev-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:41:26 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in DEV
+2026-06-26 20:41:29 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:41:29 | INFO     | app.services.metadata_service | Retrieving permissions for CustomField: Account.UserID__c in UAT
+2026-06-26 20:41:50 | INFO     | app.api.agent | Agent approval received: 1 actions → UAT
+2026-06-26 20:41:50 | INFO     | app.services.agent_service | Processing approval for 1 actions → UAT
+2026-06-26 20:41:51 | INFO     | httpx | HTTP Request: GET https://keripalechinmayuat-dev-ed.develop.my.salesforce.com/services/data/v60.0/limits "HTTP/1.1 200 OK"
+2026-06-26 20:41:51 | INFO     | app.services.sync_service | Applying 1 approved actions to UAT
+2026-06-26 20:41:53 | INFO     | app.services.sync_service | ✅ Synced CustomField:Account.UserID__c for profile 'System Administrator'
+2026-06-26 20:41:53 | INFO     | app.services.sync_service | Sync complete: 1 succeeded, 0 failed

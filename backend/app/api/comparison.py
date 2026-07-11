@@ -1,56 +1,29 @@
-"""API routes for environment comparison and drift analysis."""
+"""API routes for component permission comparison."""
 
 import logging
-from fastapi import APIRouter
-from typing import Optional
+from fastapi import APIRouter, HTTPException
+from typing import List, Dict
 
-from app.services.comparison_service import compare_environments, get_drift_report
+from app.services.comparison_service import compare_components
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-
-@router.post("/compare-environments")
+@router.post("/compare-components")
 async def compare(request: dict):
-    """Compare metadata between two environments."""
+    """Compare metadata for specific components between two environments."""
     source_env = request.get("source_env", "DEV")
     target_env = request.get("target_env", "UAT")
-    profile_name = request.get("profile_name")
+    deployment_components = request.get("deployment_components", [])
 
-    logger.info(f"Comparing {source_env} vs {target_env}")
+    if not deployment_components:
+        raise HTTPException(status_code=400, detail="deployment_components cannot be empty")
 
-    result = compare_environments(source_env, target_env, profile_name)
-    return result
+    logger.info(f"Comparing {len(deployment_components)} components: {source_env} vs {target_env}")
 
-
-@router.get("/drift-report")
-async def drift_report(source_env: str = "DEV", target_env: str = "PROD"):
-    """Get drift analysis report."""
-    report = get_drift_report(source_env, target_env)
-    return report
-
-
-@router.get("/comparison-summary")
-async def comparison_summary():
-    """Get quick comparison summaries for all environment pairs."""
-    from app.api.metadata import _metadata_cache
-    
-    pairs = [("DEV", "UAT"), ("UAT", "PROD"), ("DEV", "PROD")]
-    summaries = []
-
-    for src, tgt in pairs:
-        # Only compare if both environments have been fetched
-        if src not in _metadata_cache or tgt not in _metadata_cache:
-            continue
-        try:
-            result = compare_environments(src, tgt)
-            summaries.append({
-                "source_env": src,
-                "target_env": tgt,
-                "summary": result.get("summary", {}),
-                "compared_at": result.get("compared_at"),
-            })
-        except Exception:
-            pass
-
-    return {"comparisons": summaries}
+    try:
+        result = compare_components(source_env, target_env, deployment_components)
+        return result
+    except Exception as e:
+        logger.error(f"Comparison failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))

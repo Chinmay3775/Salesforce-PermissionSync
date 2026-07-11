@@ -127,7 +127,7 @@ def authenticate_client_credentials(
         try:
             logger.debug(f"OAuth attempt {attempt}/{MAX_RETRIES}")
 
-            with httpx.Client(timeout=30.0) as client:
+            with httpx.Client(timeout=30.0, follow_redirects=True) as client:
                 response = client.post(token_url, data=payload)
 
             if response.status_code == 200:
@@ -148,13 +148,15 @@ def authenticate_client_credentials(
                 }
 
             # Handle error response
-            error_body = (
-                response.json()
-                if response.headers.get("content-type", "").startswith("application/json")
-                else {}
-            )
-            error_code = error_body.get("error", "unknown_error")
-            error_description = error_body.get("error_description", "No description provided")
+            content_type = response.headers.get("content-type", "").lower()
+            if "application/json" in content_type:
+                error_body = response.json()
+                error_code = error_body.get("error", "unknown_error")
+                error_description = error_body.get("error_description", "No description provided")
+            else:
+                error_body = {}
+                error_code = "non_json_response"
+                error_description = response.text[:200] if response.text else "No description provided"
 
             logger.error(
                 f"OAuth error (attempt {attempt}): "

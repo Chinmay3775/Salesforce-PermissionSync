@@ -47,7 +47,7 @@ export default function Connections() {
       </motion.div>
 
       {/* OAuth Info Banner */}
-      <motion.div variants={item} className="glass-card p-4 flex items-center gap-3"
+      <motion.div variants={item} className="card p-4 flex items-center gap-3"
         style={{ borderLeft: '3px solid var(--color-accent-blue)' }}>
         <Shield size={18} style={{ color: 'var(--color-accent-blue)', flexShrink: 0 }} />
         <div>
@@ -74,7 +74,7 @@ export default function Connections() {
       </motion.div>
 
       {/* Connection Details Table */}
-      <motion.div variants={item} className="glass-card p-5">
+      <motion.div variants={item} className="card p-5">
         <h3 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: 'var(--color-text-tertiary)' }}>
           Connection Details
         </h3>
@@ -183,7 +183,7 @@ function OrgConnectionCard({ org, config, onConnect, onDisconnect }) {
   return (
     <motion.div
       whileHover={{ y: -3 }}
-      className="glass-card overflow-hidden flex flex-col"
+      className="card overflow-hidden flex flex-col"
     >
       {/* Header */}
       <div className="p-4 flex items-center justify-between" style={{ background: `${color}08`, borderBottom: `1px solid ${color}25` }}>

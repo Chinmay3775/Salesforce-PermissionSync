@@ -9,7 +9,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import orgs, metadata, comparison, sync, reports
+from app.api import orgs, metadata, comparison, sync, reports, agent
 from app.utils.logger import setup_logging
 
 # Setup logging
@@ -72,6 +72,7 @@ app.include_router(metadata.router, prefix="/api", tags=["Metadata"])
 app.include_router(comparison.router, prefix="/api", tags=["Comparison"])
 app.include_router(sync.router, prefix="/api", tags=["Synchronization"])
 app.include_router(reports.router, prefix="/api", tags=["Reports"])
+app.include_router(agent.router, prefix="/api", tags=["Agent Workflow"])
 
 
 @app.get("/api/health")

@@ -1,35 +1,28 @@
-"""API routes for permission synchronization."""
+"""API routes for action application and sync history."""
 
 import logging
 from fastapi import APIRouter
 
-from app.services.sync_service import preview_sync, execute_sync, get_sync_history
+from app.services.sync_service import apply_approved_actions, get_action_history
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.post("/sync-permissions")
-async def sync_permissions(request: dict):
-    """Sync permissions between environments."""
-    source_env = request.get("source_env", "DEV")
+@router.post("/apply-actions")
+async def apply_actions(request: dict):
+    """Apply approved actions directly to the target environment."""
     target_env = request.get("target_env", "UAT")
-    items = request.get("items", [])
-    sync_all = request.get("sync_all", False)
-    dry_run = request.get("dry_run", True)
+    approved_actions = request.get("approved_actions", [])
 
-    logger.info(f"Sync request: {source_env} → {target_env} (dry_run={dry_run})")
+    logger.info(f"Applying {len(approved_actions)} actions to {target_env}")
 
-    if dry_run:
-        result = preview_sync(source_env, target_env, items, sync_all)
-    else:
-        result = execute_sync(source_env, target_env, items, sync_all)
-
+    result = apply_approved_actions(target_env, approved_actions)
     return result
 
 
-@router.get("/sync-history")
-async def sync_history():
-    """Get sync operation history."""
-    history = get_sync_history()
+@router.get("/action-history")
+async def action_history():
+    """Get history of applied actions."""
+    history = get_action_history()
     return {"history": history}
