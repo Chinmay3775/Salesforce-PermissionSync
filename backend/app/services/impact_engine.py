@@ -6,10 +6,12 @@ from typing import List, Dict
 
 # Mapping of Salesforce Component Type to the required permission types to check
 COMPONENT_PERMISSION_MAPPING = {
-    "ApexClass": ["classAccesses"],
-    "CustomField": ["fieldPermissions"],
+    "ApexClass":    ["classAccesses"],
+    "CustomField":  ["fieldPermissions"],
     "CustomObject": ["objectPermissions", "tabVisibilities"],
-    "CustomTab": ["tabVisibilities"],
+    "CustomTab":    ["tabVisibilities"],      # full 3-state visibility via Metadata API
+    "PageLayout":   ["layoutAssignments"],    # Profile → RecordType → Layout
+    "FlowAccess":   ["flowAccesses"],         # Profile → Flow → enabled (not Flow metadata)
 }
 
 def determine_required_permissions(component_type: str) -> Dict[str, List[str]]:

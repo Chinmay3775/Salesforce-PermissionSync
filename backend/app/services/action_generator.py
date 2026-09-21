@@ -50,6 +50,30 @@ def generate_deployment_xml(approved_actions: List[Dict[str, Any]]) -> Dict[str,
     </objectPermissions>"""
             profiles_xml[profile].append(xml)
 
+        elif c_type == "FlowAccess":
+            xml = f"""    <flowAccesses>
+        <enabled>{str(target.get("enabled", True)).lower()}</enabled>
+        <flow>{c_name}</flow>
+    </flowAccesses>"""
+            profiles_xml[profile].append(xml)
+
+        elif c_type == "CustomTab":
+            visibility = target.get("visibility", "DefaultOn")
+            xml = f"""    <tabVisibilities>
+        <tab>{c_name}</tab>
+        <visibility>{visibility}</visibility>
+    </tabVisibilities>"""
+            profiles_xml[profile].append(xml)
+
+        elif c_type == "PageLayout":
+            xml = f"""    <layoutAssignments>
+        <layout>{c_name}</layout>"""
+            if target.get("recordType"):
+                xml += f"\n        <recordType>{target['recordType']}</recordType>"
+            xml += "\n    </layoutAssignments>"
+            profiles_xml[profile].append(xml)
+
+
     # Wrap in Profile node
     final_xml = {}
     for profile, snippets in profiles_xml.items():

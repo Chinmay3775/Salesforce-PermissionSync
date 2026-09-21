@@ -72,7 +72,7 @@ app.include_router(metadata.router, prefix="/api", tags=["Metadata"])
 app.include_router(comparison.router, prefix="/api", tags=["Comparison"])
 app.include_router(sync.router, prefix="/api", tags=["Synchronization"])
 app.include_router(reports.router, prefix="/api", tags=["Reports"])
-app.include_router(agent.router, prefix="/api", tags=["Agent Workflow"])
+app.include_router(agent.router, prefix="/api", tags=["Compare & Sync"])
 
 
 @app.get("/api/health")

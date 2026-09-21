@@ -118,6 +118,33 @@ def compare_components(
                     source_org, target_org,
                     comparison_results,
                 )
+                _compare_lists(
+                    source_profile.get("tabVisibilities", []),
+                    target_profile.get("tabVisibilities", []),
+                    "tab", "Tab Visibility",
+                    display_label, src_name, tgt_name,
+                    comp_name, comp_type,
+                    source_org, target_org,
+                    comparison_results,
+                )
+                _compare_lists(
+                    source_profile.get("layoutAssignments", []),
+                    target_profile.get("layoutAssignments", []),
+                    "layout", "Page Layout Assignment",
+                    display_label, src_name, tgt_name,
+                    comp_name, comp_type,
+                    source_org, target_org,
+                    comparison_results,
+                )
+                _compare_lists(
+                    source_profile.get("flowAccesses", []),
+                    target_profile.get("flowAccesses", []),
+                    "flow", "Flow Access",
+                    display_label, src_name, tgt_name,
+                    comp_name, comp_type,
+                    source_org, target_org,
+                    comparison_results,
+                )
         else:
             # ── LEGACY NAME-UNION MODE ───────────────────────────────────────
             profiles = set(
@@ -155,8 +182,36 @@ def compare_components(
                     source_org, target_org,
                     comparison_results,
                 )
+                _compare_lists(
+                    source_profile.get("tabVisibilities", []),
+                    target_profile.get("tabVisibilities", []),
+                    "tab", "Tab Visibility",
+                    pname, pname, pname,
+                    comp_name, comp_type,
+                    source_org, target_org,
+                    comparison_results,
+                )
+                _compare_lists(
+                    source_profile.get("layoutAssignments", []),
+                    target_profile.get("layoutAssignments", []),
+                    "layout", "Page Layout Assignment",
+                    pname, pname, pname,
+                    comp_name, comp_type,
+                    source_org, target_org,
+                    comparison_results,
+                )
+                _compare_lists(
+                    source_profile.get("flowAccesses", []),
+                    target_profile.get("flowAccesses", []),
+                    "flow", "Flow Access",
+                    pname, pname, pname,
+                    comp_name, comp_type,
+                    source_org, target_org,
+                    comparison_results,
+                )
 
     return comparison_results
+
 
 
 def _compare_lists(

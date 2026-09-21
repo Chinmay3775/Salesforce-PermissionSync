@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, Play, CheckCircle2, AlertTriangle, Plus, Trash2, ArrowRight, Upload } from 'lucide-react';
-import { runAgent, approveAgentActions } from '../services/api';
+import { motion } from 'framer-motion';
+import { GitCompare, Play, CheckCircle2, AlertTriangle, Plus, Trash2, ArrowRight, Upload } from 'lucide-react';
+import { runComparison, approveActions } from '../services/api';
 import * as XLSX from 'xlsx';
 
 export default function AgentWorkflow() {
@@ -65,9 +65,12 @@ export default function AgentWorkflow() {
           }
           
           const normType = rawType.toLowerCase().replace(/[^a-z0-9]/g, '');
-          if (normType === 'customobject') return 'CustomObject';
-          if (normType === 'customfield') return 'CustomField';
-          if (normType === 'apexclass') return 'ApexClass';
+          if (normType === 'customobject' || normType === 'object') return 'CustomObject';
+          if (normType === 'customfield' || normType === 'field') return 'CustomField';
+          if (normType === 'apexclass' || normType === 'class') return 'ApexClass';
+          if (normType === 'customtab' || normType === 'tab') return 'CustomTab';
+          if (normType === 'pagelayout' || normType === 'layout') return 'PageLayout';
+          if (normType === 'flowaccess' || normType === 'flow') return 'FlowAccess';
           
           return rawType;
         };
@@ -163,7 +166,7 @@ export default function AgentWorkflow() {
     }
   };
 
-  const handleRunAgent = async () => {
+  const handleRunComparison = async () => {
     // filter empty
     const validComponents = components
       .filter(c => c.name.trim() !== '')
@@ -186,7 +189,7 @@ export default function AgentWorkflow() {
         target_env: targetEnv,
         deployment_sheet: validComponents
       };
-      const res = await runAgent(payload);
+      const res = await runComparison(payload);
       
       setActionPlan(res.data.action_plan || []);
       // Select all by default
@@ -195,7 +198,7 @@ export default function AgentWorkflow() {
       
       setStage(2);
     } catch (err) {
-      setError(err.response?.data?.detail || 'Failed to run agent');
+      setError(err.response?.data?.detail || 'Comparison failed');
     } finally {
       setLoading(false);
     }
@@ -227,7 +230,7 @@ export default function AgentWorkflow() {
         target_env: targetEnv,
         approved_actions: approved
       };
-      const res = await approveAgentActions(payload);
+      const res = await approveActions(payload);
       
       setDeploymentResult(res.data);
       setStage(3);
@@ -250,11 +253,11 @@ export default function AgentWorkflow() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight mb-1 flex items-center gap-2 text-white">
-            <Bot className="text-blue-400" />
-            Deployment-Based Permission Agent
+            <GitCompare className="text-blue-400" />
+            Permission Compare & Sync
           </h1>
           <p className="text-sm text-gray-400">
-            Intelligently fetch, compare, and deploy permissions for specific components.
+            Fetch, compare, and deploy permissions for specific components across environments.
           </p>
         </div>
         
@@ -282,7 +285,7 @@ export default function AgentWorkflow() {
           className="bg-[#1a1b1e] border border-gray-800 rounded-xl shadow-lg overflow-hidden"
         >
           <div className="p-5 border-b border-gray-800 bg-gray-800/20">
-            <h2 className="font-semibold text-white">Agent Setup</h2>
+            <h2 className="font-semibold text-white">Setup</h2>
           </div>
           
           <div className="p-6 space-y-6">
@@ -358,6 +361,9 @@ export default function AgentWorkflow() {
                             <option className="bg-gray-900" value="ApexClass">ApexClass</option>
                             <option className="bg-gray-900" value="CustomField">CustomField</option>
                             <option className="bg-gray-900" value="CustomObject">CustomObject</option>
+                            <option className="bg-gray-900" value="CustomTab">CustomTab</option>
+                            <option className="bg-gray-900 text-gray-500" value="PageLayout" disabled>PageLayout (Coming Soon)</option>
+                            <option className="bg-gray-900 text-gray-500" value="FlowAccess" disabled>FlowAccess (Coming Soon)</option>
                           </select>
                         </td>
                         <td className="p-2">
@@ -374,7 +380,14 @@ export default function AgentWorkflow() {
                         <td className="p-2">
                           <input 
                             type="text"
-                            placeholder={c.type === 'CustomField' ? "e.g. Status__c" : "e.g. EmailController"}
+                            placeholder={
+                              c.type === 'CustomField' ? "e.g. Status__c" :
+                              c.type === 'CustomObject' ? "e.g. Audit__c" :
+                              c.type === 'CustomTab' ? "e.g. Audit__c" :
+                              c.type === 'PageLayout' ? "e.g. Account-Account Layout" :
+                              c.type === 'FlowAccess' ? "e.g. My_Flow" :
+                              "e.g. EmailController"
+                            }
                             className="w-full bg-transparent border-none text-sm text-white focus:ring-0 outline-none"
                             value={c.name} onChange={e => updateComponent(i, 'name', e.target.value)}
                           />
@@ -398,7 +411,7 @@ export default function AgentWorkflow() {
           
           <div className="p-5 bg-gray-900 border-t border-gray-800 flex justify-end">
             <button
-              onClick={handleRunAgent}
+              onClick={handleRunComparison}
               disabled={loading}
               className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-blue-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -407,7 +420,7 @@ export default function AgentWorkflow() {
               ) : (
                 <Play size={16} className="fill-current" />
               )}
-              {loading ? 'Agent Running...' : 'Run Agent Engine'}
+              {loading ? 'Running...' : 'Run Comparison'}
             </button>
           </div>
         </motion.div>

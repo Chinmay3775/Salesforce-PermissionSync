@@ -1,15 +1,15 @@
 import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ArrowRight, ArrowLeft, Bot, Upload, Plus, Trash2,
+  ArrowRight, ArrowLeft, Upload, Plus, Trash2,
   CheckCircle2, AlertTriangle, ArrowLeftRight, RefreshCw,
   Zap, GitCompare, Users, FileText, ChevronDown, ChevronUp,
-  ShieldCheck, ShieldX, Minus, X
+  ShieldCheck, ShieldX, Minus, Download
 } from 'lucide-react';
 import {
   getProfiles,
-  runAgent,
-  approveAgentActions,
+  runComparison,
+  approveActions,
 } from '../services/api';
 import * as XLSX from 'xlsx';
 
@@ -24,13 +24,13 @@ const STAGES = [
 // ─── Status badge config ──────────────────────────────────────────────────────
 const STATUS_CONFIG = {
   'Missing in Target': {
-    label: '✕ Missing',
+    label: '✕ Present in Source, Missing in Target',
     className: 'bg-[var(--color-status-error-bg)] text-[var(--color-status-error)]',
     icon: ShieldX,
   },
   'Missing in Source': {
-    label: '✕ Missing',
-    className: 'bg-[var(--color-status-error-bg)] text-[var(--color-status-error)]',
+    label: '✕ Present in Target, Missing in Source',
+    className: 'bg-[var(--color-status-warning-bg)] text-[var(--color-status-warning)]',
     icon: Minus,
   },
   'Mismatch': {
@@ -50,6 +50,18 @@ function normalizeKey(k) {
   return String(k).toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
+// Schema-driven config per component type.
+// fields: which input columns are active for this type.
+// objectLabel: label shown in the Object column header/placeholder.
+const COMPONENT_SCHEMA = {
+  ApexClass:    { hasObject: false, objectPlaceholder: '-' },
+  CustomField:  { hasObject: true,  objectPlaceholder: 'e.g. Account' },
+  CustomObject: { hasObject: false, objectPlaceholder: '-' },
+  CustomTab:    { hasObject: false, objectPlaceholder: '-' },
+  PageLayout:   { hasObject: true,  objectPlaceholder: 'RecordType (optional)' },
+  FlowAccess:   { hasObject: false, objectPlaceholder: '-' },
+};
+
 function extractType(item) {
   let rawType = 'ApexClass';
   const priorities = ['componenttype', 'type'];
@@ -60,9 +72,12 @@ function extractType(item) {
     if (rawType !== 'ApexClass') break;
   }
   const norm = rawType.toLowerCase().replace(/[^a-z0-9]/g, '');
-  if (norm === 'customobject') return 'CustomObject';
-  if (norm === 'customfield')  return 'CustomField';
-  if (norm === 'apexclass')    return 'ApexClass';
+  if (norm === 'customobject')                      return 'CustomObject';
+  if (norm === 'customfield')                       return 'CustomField';
+  if (norm === 'apexclass')                         return 'ApexClass';
+  if (norm === 'customtab' || norm === 'tab')       return 'CustomTab';
+  if (norm === 'pagelayout' || norm === 'layout')   return 'PageLayout';
+  if (norm === 'flowaccess' || norm === 'flow')     return 'FlowAccess';
   return rawType;
 }
 
@@ -196,6 +211,9 @@ export default function CompareWorkflow() {
   const [targetProfiles, setTargetProfiles] = useState([]);
   const [selectedProfiles, setSelectedProfiles] = useState(new Set());
   const [profilesLoading, setProfilesLoading] = useState(false);
+  // Target-only profiles (exist in target org but not in source)
+  const [selectedTargetOnlyProfiles, setSelectedTargetOnlyProfiles] = useState(new Set());
+  const [targetOnlyMappings, setTargetOnlyMappings] = useState({}); // { targetProfileName: sourceProfileName }
 
   // Stage 4 — Results
   const [actionPlan, setActionPlan]           = useState([]);
@@ -220,6 +238,8 @@ export default function CompareWorkflow() {
     setSelectedActions(new Set());
     setSyncResult(null);
     setExpandedRows(new Set());
+    setSelectedTargetOnlyProfiles(new Set());
+    setTargetOnlyMappings({});
     clearError();
   };
 
@@ -329,10 +349,25 @@ export default function CompareWorkflow() {
     setSelectedProfiles(s);
   };
 
+  const toggleTargetOnlyProfile = (name) => {
+    const s = new Set(selectedTargetOnlyProfiles);
+    s.has(name) ? s.delete(name) : s.add(name);
+    setSelectedTargetOnlyProfiles(s);
+    if (error) clearError();
+  };
+
+  const setTargetOnlyMapping = (targetName, sourceName) => {
+    setTargetOnlyMappings(prev => ({ ...prev, [targetName]: sourceName }));
+    if (error) clearError();
+  };
+
   // Derived for profile checklist
-  const targetProfileNames = new Set(targetProfiles.map(p => p.name));
+  const targetProfileNames  = new Set(targetProfiles.map(p => p.name));
+  const sourceProfileNames  = new Set(sourceProfiles.map(p => p.name));
   const presentSourceProfiles = sourceProfiles.filter(p => targetProfileNames.has(p.name));
   const missingSourceProfiles = sourceProfiles.filter(p => !targetProfileNames.has(p.name));
+  // Profiles that exist in the target org but have no counterpart in the source org
+  const targetOnlyProfiles    = targetProfiles.filter(p => !sourceProfileNames.has(p.name));
 
   const standardProfiles = presentSourceProfiles.filter(p => !p.is_custom);
   const customProfiles = presentSourceProfiles.filter(p => p.is_custom);
@@ -349,16 +384,40 @@ export default function CompareWorkflow() {
       
     if (!validComponents.length) { setError('Add at least one component.'); return; }
 
+    if (selectedProfiles.size === 0 && selectedTargetOnlyProfiles.size === 0) {
+      setError('Select at least one profile to compare.');
+      return;
+    }
+
+    // Validate target-only profiles: every checked target-only profile MUST have a source profile selected
+    const unmappedTargetOnly = Array.from(selectedTargetOnlyProfiles).filter(
+      name => !targetOnlyMappings[name] || targetOnlyMappings[name].trim() === ''
+    );
+    if (unmappedTargetOnly.length > 0) {
+      setError(`Please select a ${sourceEnv} (Source) profile to copy permissions from for: ${unmappedTargetOnly.join(', ')}`);
+      return;
+    }
+
+    // Build mapping: same-name pairs from standard profile selection
     const validMapping = Array.from(selectedProfiles).map(name => ({
       source_profile: name,
       target_profile: name
     }));
-    
-    if (!validMapping.length) { setError('Select at least one profile.'); return; }
+
+    // Add target-only profile pairs — user selected a target-only profile
+    // and chose which source profile to copy permissions FROM
+    for (const targetProfile of selectedTargetOnlyProfiles) {
+      const sourceProfile = targetOnlyMappings[targetProfile];
+      if (sourceProfile) {
+        validMapping.push({ source_profile: sourceProfile, target_profile: targetProfile });
+      }
+    }
+
+    if (!validMapping.length) { setError('Select at least one profile to compare.'); return; }
 
     setLoading(true); clearError();
     try {
-      const res = await runAgent({
+      const res = await runComparison({
         source_env:       sourceEnv,
         target_env:       targetEnv,
         deployment_sheet: validComponents,
@@ -384,7 +443,7 @@ export default function CompareWorkflow() {
 
     setSyncing(true); clearError();
     try {
-      const res = await approveAgentActions({ target_env: targetEnv, approved_actions: approved });
+      const res = await approveActions({ target_env: targetEnv, approved_actions: approved });
       setSyncResult(res.data);
     } catch (err) {
       setError(err.response?.data?.detail || 'Sync failed.');
@@ -405,6 +464,143 @@ export default function CompareWorkflow() {
     setSelectedActions(s);
   };
 
+  // ── Report Generation (Excel & CSV) ────────────────────────────────────────
+  const formatPermissionDetails = (val) => {
+    if (!val) return 'Not Present';
+    if (typeof val === 'string') return val;
+    if (Array.isArray(val)) {
+      if (val.length === 0) return 'None';
+      return val.map(item => {
+        if (typeof item === 'object') {
+          if (item.apexClass) return `ApexClass: ${item.apexClass} (enabled: ${item.enabled})`;
+          if (item.field) return `Field: ${item.field} (read: ${item.readable}, edit: ${item.editable})`;
+          if (item.object_name) return `Object: ${item.object_name} (R:${item.allowRead}, C:${item.allowCreate}, E:${item.allowEdit}, D:${item.allowDelete})`;
+          if (item.tab) return `Tab: ${item.tab} (${item.visibility})`;
+          if (item.flow) return `Flow: ${item.flow} (enabled: ${item.enabled})`;
+          if (item.layout) return `Layout: ${item.layout}`;
+          return JSON.stringify(item);
+        }
+        return String(item);
+      }).join('; ');
+    }
+    if (typeof val === 'object') {
+      const parts = [];
+      if (val.allowRead !== undefined) parts.push(`Read: ${val.allowRead}`);
+      if (val.allowCreate !== undefined) parts.push(`Create: ${val.allowCreate}`);
+      if (val.allowEdit !== undefined) parts.push(`Edit: ${val.allowEdit}`);
+      if (val.allowDelete !== undefined) parts.push(`Delete: ${val.allowDelete}`);
+      if (val.viewAllRecords !== undefined) parts.push(`ViewAll: ${val.viewAllRecords}`);
+      if (val.modifyAllRecords !== undefined) parts.push(`ModifyAll: ${val.modifyAllRecords}`);
+      if (val.readable !== undefined) parts.push(`Read: ${val.readable}`);
+      if (val.editable !== undefined) parts.push(`Edit: ${val.editable}`);
+      if (val.enabled !== undefined) parts.push(`Enabled: ${val.enabled}`);
+      if (val.visibility !== undefined) parts.push(`Visibility: ${val.visibility}`);
+      if (val.layout !== undefined) parts.push(`Layout: ${val.layout}${val.recordType ? ` (RT: ${val.recordType})` : ''}`);
+      if (parts.length > 0) return parts.join(', ');
+      return JSON.stringify(val);
+    }
+    return String(val);
+  };
+
+  const formatWhatChanged = (action, srcEnv, tgtEnv) => {
+    if (action.changes && action.changes.length > 0) {
+      return action.changes.map(c => `${c.path}: ${c.old_value} → ${c.new_value}`).join('; ');
+    }
+    const status = action.status || action.action;
+    if (status === 'Missing in Target' || status === '✕ Present in Source, Missing in Target') {
+      return `Present in ${srcEnv}, Missing in ${tgtEnv} (Will be created in ${tgtEnv})`;
+    }
+    if (status === 'Missing in Source' || status === '✕ Present in Target, Missing in Source') {
+      return `Present in ${tgtEnv}, Missing in ${srcEnv}`;
+    }
+    return status || 'Permission difference';
+  };
+
+  const handleDownloadReport = (type = 'sync', format = 'xlsx') => {
+    try {
+      const isSync = type === 'sync' && syncResult;
+      const items = isSync ? (syncResult.details || actionPlan) : actionPlan;
+
+      if (!items || items.length === 0) {
+        setError('No report data available to export.');
+        return;
+      }
+
+      const rows = items.map((action, idx) => ({
+        "Record #": idx + 1,
+        "Component Type": action.component_type || '',
+        "Component Name": action.component_name || '',
+        "Source Org": action.source_env || sourceEnv || '',
+        "Source Profile": action.source_profile || action.profile || '',
+        "Target Org": action.target_env || targetEnv || '',
+        "Target Profile": action.target_profile || action.profile || '',
+        "Difference / Change Type": action.status || action.action || 'Mismatch',
+        "What Changed": formatWhatChanged(action, sourceEnv, targetEnv),
+        "Source Org Permissions": formatPermissionDetails(action.source_value),
+        "Target Org Permissions (Before)": formatPermissionDetails(action.current_target_value),
+        "Applied Target Permissions": formatPermissionDetails(action.target),
+        "Sync Status": action.sync_status || (isSync ? 'Success' : 'Pending Sync'),
+        ...(isSync ? { "Error Detail": action.error || 'None' } : {}),
+        "Date / Time": isSync
+          ? (action.synced_at || syncResult.synced_at || new Date().toLocaleString())
+          : new Date().toLocaleString(),
+      }));
+
+      const wb = XLSX.utils.book_new();
+      const wsDetails = XLSX.utils.json_to_sheet(rows);
+
+      // Auto column widths
+      const colWidths = Object.keys(rows[0] || {}).map(key => ({
+        wch: Math.max(key.length, ...rows.map(r => String(r[key] || '').length).slice(0, 50), 12)
+      }));
+      wsDetails['!cols'] = colWidths;
+
+      const dateStr = new Date().toISOString().slice(0, 10);
+      const baseFilename = isSync
+        ? `PermissionSync_Report_${sourceEnv}_to_${targetEnv}_${dateStr}`
+        : `PermissionComparison_Report_${sourceEnv}_to_${targetEnv}_${dateStr}`;
+
+      if (format === 'csv') {
+        const csvContent = XLSX.utils.sheet_to_csv(wsDetails);
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `${baseFilename}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } else {
+        const summaryRows = isSync ? [
+          { "Metric": "Report Type", "Value": "Permission Sync Execution Report" },
+          { "Metric": "Source Org", "Value": sourceEnv },
+          { "Metric": "Target Org", "Value": targetEnv },
+          { "Metric": "Overall Status", "Value": syncResult.status || 'Completed' },
+          { "Metric": "Total Items Synced", "Value": syncResult.items_synced ?? 0 },
+          { "Metric": "Total Items Failed", "Value": syncResult.items_failed ?? 0 },
+          { "Metric": "Execution Time", "Value": syncResult.synced_at || new Date().toLocaleString() },
+        ] : [
+          { "Metric": "Report Type", "Value": "Permission Comparison Report" },
+          { "Metric": "Source Org", "Value": sourceEnv },
+          { "Metric": "Target Org", "Value": targetEnv },
+          { "Metric": "Total Differences Found", "Value": actionPlan.length },
+          { "Metric": "Generated At", "Value": new Date().toLocaleString() },
+        ];
+        const wsSummary = XLSX.utils.json_to_sheet(summaryRows);
+        wsSummary['!cols'] = [{ wch: 25 }, { wch: 35 }];
+
+        XLSX.utils.book_append_sheet(wb, wsSummary, "Summary");
+        XLSX.utils.book_append_sheet(wb, wsDetails, "Detailed Changes");
+
+        XLSX.writeFile(wb, `${baseFilename}.xlsx`);
+      }
+    } catch (err) {
+      console.error('Failed to export report:', err);
+      setError('Failed to generate report file: ' + err.message);
+    }
+  };
+
   // ── Derived ────────────────────────────────────────────────────────────────
 
 
@@ -417,7 +613,7 @@ export default function CompareWorkflow() {
       <div className="flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold flex items-center gap-2 mb-1" style={{ color: 'var(--color-text-primary)' }}>
-            <Bot size={24} style={{ color: 'var(--color-accent-blue)' }} />
+            <GitCompare size={24} style={{ color: 'var(--color-accent-blue)' }} />
             Permission Comparison Workflow
           </h1>
           <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
@@ -560,26 +756,49 @@ export default function CompareWorkflow() {
                             className="bg-transparent border-none text-sm focus:ring-0 outline-none cursor-pointer w-full"
                             style={{ color: 'var(--color-text-primary)' }}
                           >
-                            {['ApexClass', 'CustomField', 'CustomObject'].map(t => (
-                              <option key={t} value={t} style={{ background: 'var(--color-bg-card)' }}>{t}</option>
+                            {[
+                              { value: 'ApexClass',    label: 'ApexClass',    disabled: false },
+                              { value: 'CustomField',  label: 'CustomField',  disabled: false },
+                              { value: 'CustomObject', label: 'CustomObject', disabled: false },
+                              { value: 'CustomTab',    label: 'CustomTab',    disabled: false },
+                              { value: 'PageLayout',   label: 'PageLayout (Coming Soon)', disabled: true },
+                              { value: 'FlowAccess',   label: 'FlowAccess (Coming Soon)', disabled: true },
+                            ].map(t => (
+                              <option
+                                key={t.value}
+                                value={t.value}
+                                disabled={t.disabled}
+                                style={{
+                                  background: 'var(--color-bg-card)',
+                                  color: t.disabled ? '#9ca3af' : 'inherit'
+                                }}
+                              >
+                                {t.label}
+                              </option>
                             ))}
                           </select>
                         </td>
                         <td className="p-2">
                           <input
                             type="text"
-                            placeholder={c.type === 'CustomField' ? "e.g. Account" : "-"}
+                            placeholder={COMPONENT_SCHEMA[c.type]?.objectPlaceholder ?? '-'}
                             value={c.objectName}
                             onChange={e => updateComponent(i, 'objectName', e.target.value)}
-                            disabled={c.type !== 'CustomField'}
-                            style={{ opacity: c.type === 'CustomField' ? 1 : 0.3, color: 'var(--color-text-primary)' }}
+                            disabled={!COMPONENT_SCHEMA[c.type]?.hasObject}
+                            style={{ opacity: COMPONENT_SCHEMA[c.type]?.hasObject ? 1 : 0.3, color: 'var(--color-text-primary)' }}
                             className="w-full bg-transparent border-none text-sm focus:ring-0 outline-none placeholder:text-gray-400 dark:placeholder:text-gray-600"
                           />
                         </td>
                         <td className="p-2">
                           <input
                             type="text"
-                            placeholder={c.type === 'CustomField' ? "e.g. Status__c" : "e.g. EmailController"}
+                            placeholder={
+                              c.type === 'CustomField'  ? 'e.g. Status__c' :
+                              c.type === 'CustomTab'    ? 'e.g. MyObject__c' :
+                              c.type === 'PageLayout'   ? 'e.g. Account-Account Layout' :
+                              c.type === 'FlowAccess'   ? 'e.g. Account_Approval_Flow' :
+                                                         'e.g. EmailController'
+                            }
                             value={c.name}
                             onChange={e => updateComponent(i, 'name', e.target.value)}
                             className="w-full bg-transparent border-none text-sm focus:ring-0 outline-none placeholder:text-gray-400 dark:placeholder:text-gray-600"
@@ -632,9 +851,15 @@ export default function CompareWorkflow() {
                     <ArrowLeft size={15} /> Back
                   </Btn>
                   <div className="flex items-center gap-3">
+                    {error && (
+                      <span className="text-xs text-red-400 flex items-center gap-1.5 font-medium max-w-md">
+                        <AlertTriangle size={14} className="shrink-0 text-red-400" />
+                        {error}
+                      </span>
+                    )}
                     <Btn
                       onClick={handleRunComparison}
-                      disabled={loading || selectedProfiles.size === 0}
+                      disabled={loading || (selectedProfiles.size === 0 && selectedTargetOnlyProfiles.size === 0)}
                     >
                       {loading
                         ? <><Spinner /> Comparing…</>
@@ -735,9 +960,91 @@ export default function CompareWorkflow() {
                 </div>
               </div>
 
-              {selectedProfiles.size > 0 && (
+              {/* Present in Target, Missing in Source — target-only profiles */}
+              {targetOnlyProfiles.length > 0 && (
+                <div className="mt-4 border rounded-lg overflow-hidden" style={{ borderColor: 'var(--color-border-primary)', background: 'var(--color-bg-card)' }}>
+                  <div className="flex items-center justify-between p-3 border-b" style={{ borderColor: 'var(--color-border-primary)', background: 'var(--color-bg-secondary)' }}>
+                    <h3 className="text-sm font-medium text-amber-400 flex items-center gap-1.5">
+                      <Minus size={15} /> Present in Target, Missing in Source
+                    </h3>
+                    <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                      {targetOnlyProfiles.length} profile{targetOnlyProfiles.length !== 1 ? 's' : ''} only in {targetEnv} — check to include in comparison
+                    </span>
+                  </div>
+                  <div className="divide-y" style={{ borderColor: 'var(--color-border-primary)' }}>
+                    {targetOnlyProfiles.map(p => {
+                      const isSelected = selectedTargetOnlyProfiles.has(p.name);
+                      const hasSourceMapping = Boolean(targetOnlyMappings[p.name]);
+                      const isMissingMapping = isSelected && !hasSourceMapping;
+                      return (
+                        <div
+                          key={p.name}
+                          className={`flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-black/5 dark:hover:bg-white/5 ${
+                            isMissingMapping ? 'bg-amber-500/5' : ''
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isSelected}
+                            onChange={() => toggleTargetOnlyProfile(p.name)}
+                            className="rounded border-gray-300 dark:border-gray-600 bg-transparent text-amber-500 focus:ring-amber-500/50 cursor-pointer"
+                          />
+                          <span className="text-sm flex-1 font-medium" style={{ color: 'var(--color-text-primary)' }}>{p.name}</span>
+                          {isSelected ? (
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs flex items-center gap-1.5" style={{ color: isMissingMapping ? '#f59e0b' : 'var(--color-text-muted)' }}>
+                                copy permissions from
+                                <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-purple-500/15 border border-purple-500/30 text-purple-300">
+                                  {sourceEnv} (Source)
+                                </span>
+                              </span>
+                              <select
+                                value={targetOnlyMappings[p.name] || ''}
+                                onChange={e => setTargetOnlyMapping(p.name, e.target.value)}
+                                className={`border rounded-md px-2 py-1 text-xs focus:ring-1 outline-none cursor-pointer transition-colors ${
+                                  isMissingMapping
+                                    ? 'border-amber-500 ring-1 ring-amber-500/30'
+                                    : 'focus:ring-amber-500/40'
+                                }`}
+                                style={{
+                                  background: 'var(--color-bg-input)',
+                                  color: 'var(--color-text-primary)',
+                                  borderColor: isMissingMapping ? '#f59e0b' : 'var(--color-border-primary)'
+                                }}
+                              >
+                                <option value="">— select {sourceEnv} profile —</option>
+                                <optgroup label={`${sourceEnv} Profiles (Source Org)`}>
+                                  {sourceProfiles.map(sp => (
+                                    <option key={sp.name} value={sp.name} style={{ background: 'var(--color-bg-card)' }}>
+                                      {sp.name}
+                                    </option>
+                                  ))}
+                                </optgroup>
+                              </select>
+                              {isMissingMapping && (
+                                <span className="text-[11px] font-medium text-amber-500 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded">
+                                  Required
+                                </span>
+                              )}
+                            </div>
+                          ) : (
+                            <span className="text-xs px-2 py-0.5 rounded" style={{ background: 'rgba(245,158,11,0.1)', color: 'var(--color-status-warning)' }}>
+                              Only in {targetEnv}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {(selectedProfiles.size > 0 || selectedTargetOnlyProfiles.size > 0) && (
                 <div className="mt-4 text-xs text-center" style={{ color: 'var(--color-text-muted)' }}>
-                  {selectedProfiles.size} profile{selectedProfiles.size !== 1 ? 's' : ''} selected for comparison.
+                  {selectedProfiles.size > 0 && `${selectedProfiles.size} shared profile${selectedProfiles.size !== 1 ? 's' : ''}`}
+                  {selectedProfiles.size > 0 && selectedTargetOnlyProfiles.size > 0 && ' · '}
+                  {selectedTargetOnlyProfiles.size > 0 && `${selectedTargetOnlyProfiles.size} target-only profile${selectedTargetOnlyProfiles.size !== 1 ? 's' : ''}`}
+                  {' selected for comparison.'}
                 </div>
               )}
             </SectionCard>
@@ -793,7 +1100,13 @@ export default function CompareWorkflow() {
                     {selectedActions.size > 0 ? `${selectedActions.size} selected` : 'Select all'}
                   </label>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <Btn variant="outline" onClick={() => handleDownloadReport('comparison', 'xlsx')} className="text-xs">
+                    <Download size={13} /> Export Excel
+                  </Btn>
+                  <Btn variant="outline" onClick={() => handleDownloadReport('comparison', 'csv')} className="text-xs">
+                    <Download size={13} /> Export CSV
+                  </Btn>
                   <Btn variant="ghost" onClick={() => go(3)} className="text-xs">
                     <ArrowLeft size={13} /> Back
                   </Btn>
@@ -899,7 +1212,7 @@ export default function CompareWorkflow() {
                                       </div>
                                     ))}
                                   </div>
-                                  {action.changes?.length > 0 && (
+                                   {action.changes?.length > 0 && (
                                     <div className="mt-3">
                                       <p className="text-xs text-gray-500 font-semibold mb-2 uppercase tracking-wider">Changes</p>
                                       <div className="space-y-1">
@@ -912,6 +1225,80 @@ export default function CompareWorkflow() {
                                           </div>
                                         ))}
                                       </div>
+                                    </div>
+                                  )}
+
+                                  {/* ── Per-type permission detail rendering ── */}
+                                  {['source_value', 'current_target_value'].some(k => {
+                                    const d = action[k] || {};
+                                    return (d.flowAccesses?.length > 0) || (d.tabVisibilities?.length > 0) || (d.layoutAssignments?.length > 0);
+                                  }) && (
+                                    <div className="mt-3 space-y-3">
+                                      {/* flowAccesses */}
+                                      {(action.source_value?.flowAccesses?.length > 0 || action.current_target_value?.flowAccesses?.length > 0) && (
+                                        <div>
+                                          <p className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider mb-1.5">Flow Access</p>
+                                          <div className="flex gap-6">
+                                            {[{label: `${sourceEnv}`, data: action.source_value?.flowAccesses}, {label: `${targetEnv}`, data: action.current_target_value?.flowAccesses}].map(({label, data}) => (
+                                              <div key={label} className="flex-1">
+                                                <span className="text-[10px] text-gray-600 uppercase">{label}</span>
+                                                {data?.length > 0 ? data.map((f, fi) => (
+                                                  <div key={fi} className="flex items-center gap-2 mt-1">
+                                                    <span className="text-xs text-gray-300">{f.flow}</span>
+                                                    <span className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ${f.enabled ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
+                                                      {f.enabled ? 'Enabled' : 'Disabled'}
+                                                    </span>
+                                                  </div>
+                                                )) : <span className="text-xs text-gray-600 italic ml-1">— not present —</span>}
+                                              </div>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      )}
+
+                                      {/* tabVisibilities — 3-state color badge */}
+                                      {(action.source_value?.tabVisibilities?.length > 0 || action.current_target_value?.tabVisibilities?.length > 0) && (
+                                        <div>
+                                          <p className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider mb-1.5">Tab Visibility</p>
+                                          <div className="flex gap-6">
+                                            {[{label: `${sourceEnv}`, data: action.source_value?.tabVisibilities}, {label: `${targetEnv}`, data: action.current_target_value?.tabVisibilities}].map(({label, data}) => (
+                                              <div key={label} className="flex-1">
+                                                <span className="text-[10px] text-gray-600 uppercase">{label}</span>
+                                                {data?.length > 0 ? data.map((t, ti) => (
+                                                  <div key={ti} className="flex items-center gap-2 mt-1">
+                                                    <span className="text-xs text-gray-300">{t.tab}</span>
+                                                    <span className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ${
+                                                      t.visibility === 'DefaultOn'  ? 'bg-emerald-500/20 text-emerald-400' :
+                                                      t.visibility === 'DefaultOff' ? 'bg-amber-500/20 text-amber-400' :
+                                                                                      'bg-red-500/20 text-red-400'
+                                                    }`}>{t.visibility}</span>
+                                                  </div>
+                                                )) : <span className="text-xs text-gray-600 italic ml-1">— not present —</span>}
+                                              </div>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      )}
+
+                                      {/* layoutAssignments */}
+                                      {(action.source_value?.layoutAssignments?.length > 0 || action.current_target_value?.layoutAssignments?.length > 0) && (
+                                        <div>
+                                          <p className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider mb-1.5">Layout Assignments</p>
+                                          <div className="flex gap-6">
+                                            {[{label: `${sourceEnv}`, data: action.source_value?.layoutAssignments}, {label: `${targetEnv}`, data: action.current_target_value?.layoutAssignments}].map(({label, data}) => (
+                                              <div key={label} className="flex-1">
+                                                <span className="text-[10px] text-gray-600 uppercase">{label}</span>
+                                                {data?.length > 0 ? data.map((l, li) => (
+                                                  <div key={li} className="text-xs text-gray-300 mt-1">
+                                                    <span className="text-blue-300 font-mono">{l.layout}</span>
+                                                    {l.recordType && <span className="text-gray-500 ml-1">(RT: {l.recordType})</span>}
+                                                  </div>
+                                                )) : <span className="text-xs text-gray-600 italic ml-1">— not present —</span>}
+                                              </div>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      )}
                                     </div>
                                   )}
                                 </td>
@@ -956,15 +1343,15 @@ export default function CompareWorkflow() {
               </p>
 
               {/* Stats row */}
-              <div className="flex items-center justify-center gap-6 mt-6">
+              <div className="flex items-center justify-center gap-8 mt-6">
                 {[
-                  { label: 'Synced',    value: syncResult.items_synced, color: 'text-emerald-400' },
-                  { label: 'Failed',    value: syncResult.items_failed, color: 'text-red-400'     },
-                  { label: 'Sync ID',   value: syncResult.sync_id,      color: 'text-gray-400'    },
+                  { label: 'Synced',     value: syncResult.items_synced, color: 'text-emerald-400' },
+                  { label: 'Failed',     value: syncResult.items_failed, color: 'text-red-400'     },
+                  { label: 'Target Org', value: syncResult.target_env,   color: 'text-amber-300'   },
                 ].map(({ label, value, color }) => (
                   <div key={label} className="text-center">
                     <div className={`text-xl font-bold ${color}`}>{value}</div>
-                    <div className="text-xs text-gray-600">{label}</div>
+                    <div className="text-xs text-gray-500 font-medium">{label}</div>
                   </div>
                 ))}
               </div>
@@ -1029,9 +1416,15 @@ export default function CompareWorkflow() {
             )}
 
             {/* Actions */}
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-3 flex-wrap">
               <Btn variant="outline" onClick={() => { setSyncResult(null); }}>
                 <ArrowLeft size={15} /> Back to Results
+              </Btn>
+              <Btn variant="outline" onClick={() => handleDownloadReport('sync', 'xlsx')}>
+                <Download size={15} /> Download Report (Excel)
+              </Btn>
+              <Btn variant="outline" onClick={() => handleDownloadReport('sync', 'csv')}>
+                <Download size={15} /> Download Report (CSV)
               </Btn>
               <Btn variant="primary" onClick={reset}>
                 <RefreshCw size={15} /> Start New Comparison

@@ -1,19 +1,19 @@
-"""API routes for Deployment-Based Permission Agent."""
+"""API routes for Permission Compare & Sync workflow."""
 
 import logging
 from fastapi import APIRouter, HTTPException
 from typing import List, Dict, Any
 
-from app.services.agent_service import run_agent, process_approval
+from app.services.agent_service import run_comparison, process_approval
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.post("/agent/run")
-async def execute_agent(request: dict):
+@router.post("/compare/run")
+async def execute_comparison(request: dict):
     """
-    Run the agent to parse components, compare, and generate an action plan.
+    Parse components, compare permissions, and generate a sync action plan.
 
     Payload:
         source_env:      string  — e.g. "DEV"
@@ -42,27 +42,27 @@ async def execute_agent(request: dict):
                 )
 
     logger.info(
-        f"Agent triggered: {source_env} → {target_env} | "
+        f"Compare run triggered: {source_env} → {target_env} | "
         f"{len(deployment_sheet)} components | "
         f"{len(profile_mapping) if profile_mapping else 0} profile pairs"
     )
 
     try:
-        result = run_agent(source_env, target_env, deployment_sheet, profile_mapping)
+        result = run_comparison(source_env, target_env, deployment_sheet, profile_mapping)
         if result.get("status") == "error":
             raise HTTPException(status_code=400, detail=result.get("message"))
         return result
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Agent execution failed: {str(e)}")
+        logger.error(f"Comparison failed: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/agent/approve")
+@router.post("/compare/approve")
 async def approve_actions(request: dict):
     """
-    Approve an action plan. The agent applies changes to the target org.
+    Approve an action plan and apply changes to the target org.
 
     Payload:
         target_env:       string  — e.g. "UAT"
@@ -74,7 +74,7 @@ async def approve_actions(request: dict):
     if not approved_actions:
         raise HTTPException(status_code=400, detail="approved_actions cannot be empty")
 
-    logger.info(f"Agent approval received: {len(approved_actions)} actions → {target_env}")
+    logger.info(f"Approval received: {len(approved_actions)} actions → {target_env}")
 
     try:
         result = process_approval(target_env, approved_actions)

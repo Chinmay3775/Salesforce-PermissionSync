@@ -133,10 +133,27 @@ function OrgConnectionCard({ org, config, onConnect, onDisconnect }) {
     client_id: '',
     client_secret: '',
     org_url: '',
-    alias: org.alias || `PermSync-${org.environment}`
+    alias: `PermSync-${org.environment}`
   });
 
   const color = config?.color || 'var(--color-accent-blue)';
+
+  // ── Reset form whenever this org becomes disconnected ────────────────────────
+  // Prevents stale credentials from persisting across connect/disconnect cycles
+  // and stops credentials from one org appearing in another org's form.
+  useEffect(() => {
+    if (!org.connected) {
+      setFormData({
+        client_id: '',
+        client_secret: '',
+        org_url: '',
+        alias: `PermSync-${org.environment}`,
+      });
+      setConnectionError(null);
+      // If the card was in edit-mode while connected (re-connect flow), reset that too
+      setIsEditing(false);
+    }
+  }, [org.connected, org.environment]);
 
   const getErrorMessage = (err) => {
     const detail = err?.response?.data?.detail;
@@ -166,6 +183,14 @@ function OrgConnectionCard({ org, config, onConnect, onDisconnect }) {
       await onConnect({ environment: org.environment, ...formData });
       setIsEditing(false);
       setConnectionError(null);
+      // Clear sensitive credential fields after successful connection
+      // so they are not retained in memory longer than necessary
+      setFormData({
+        client_id: '',
+        client_secret: '',
+        org_url: '',
+        alias: `PermSync-${org.environment}`,
+      });
     } catch (e) {
       setConnectionError(getErrorMessage(e));
     } finally {
@@ -216,16 +241,33 @@ function OrgConnectionCard({ org, config, onConnect, onDisconnect }) {
           </>
         ) : (
           <>
-            <InputField label="Org Alias" value={formData.alias} onChange={updateField('alias')} icon={Server} placeholder="My Dev Org" />
+            <InputField label="Org Alias" value={formData.alias} onChange={updateField('alias')} icon={Server} placeholder="My Dev Org" autoComplete="off" />
 
             {/* Connected App Credentials */}
+            {/* autoComplete="off" on the wrapper div signals to browsers not to autofill this section.
+                Individual fields use specific values since Chrome ignores plain "off" on inputs. */}
             <div className="pt-1 pb-1">
               <p className="text-[9px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1" style={{ color: 'var(--color-accent-blue)' }}>
                 <Key size={10} /> Connected App Credentials
               </p>
-              <div className="space-y-3">
-                <InputField label="Client ID (Consumer Key)" value={formData.client_id} onChange={updateField('client_id')} icon={Key} placeholder="3MVG9..." />
-                <InputField label="Client Secret (Consumer Secret)" type="password" value={formData.client_secret} onChange={updateField('client_secret')} icon={Lock} placeholder="Consumer Secret" />
+              <div className="space-y-3" autoComplete="off">
+                <InputField
+                  label="Client ID (Consumer Key)"
+                  value={formData.client_id}
+                  onChange={updateField('client_id')}
+                  icon={Key}
+                  placeholder="3MVG9..."
+                  autoComplete="one-time-code"
+                />
+                <InputField
+                  label="Client Secret (Consumer Secret)"
+                  type="password"
+                  value={formData.client_secret}
+                  onChange={updateField('client_secret')}
+                  icon={Lock}
+                  placeholder="Consumer Secret"
+                  autoComplete="new-password"
+                />
               </div>
             </div>
 
@@ -234,7 +276,7 @@ function OrgConnectionCard({ org, config, onConnect, onDisconnect }) {
               <p className="text-[9px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1" style={{ color: 'var(--color-text-muted)' }}>
                 <Globe size={10} /> Salesforce Org
               </p>
-              <InputField label="Org URL" value={formData.org_url} onChange={updateField('org_url')} icon={ExternalLink} placeholder="mycompany.my.salesforce.com" />
+              <InputField label="Org URL" value={formData.org_url} onChange={updateField('org_url')} icon={ExternalLink} placeholder="mycompany.my.salesforce.com" autoComplete="off" />
             </div>
           </>
         )}
@@ -282,7 +324,7 @@ function OrgConnectionCard({ org, config, onConnect, onDisconnect }) {
   );
 }
 
-function InputField({ label, value, onChange, type = "text", readOnly, icon: Icon, placeholder }) {
+function InputField({ label, value, onChange, type = "text", readOnly, icon: Icon, placeholder, autoComplete }) {
   return (
     <div>
       {label && <label className="text-[10px] font-medium uppercase tracking-wider mb-1 block" style={{ color: 'var(--color-text-muted)' }}>{label}</label>}
@@ -294,6 +336,7 @@ function InputField({ label, value, onChange, type = "text", readOnly, icon: Ico
           onChange={onChange}
           readOnly={readOnly}
           placeholder={placeholder}
+          autoComplete={autoComplete || (readOnly ? 'off' : undefined)}
           className="flex-1 bg-transparent text-xs outline-none"
           style={{ color: 'var(--color-text-secondary)' }}
         />

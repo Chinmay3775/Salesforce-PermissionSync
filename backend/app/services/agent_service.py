@@ -1,6 +1,6 @@
 """
-Agent Orchestrator Service.
-Manages the end-to-end workflow of the Deployment-Based Permission Agent.
+Compare & Sync Service.
+Manages the end-to-end comparison and synchronization workflow.
 """
 
 import logging
@@ -14,14 +14,14 @@ from app.services.sync_service import apply_approved_actions
 logger = logging.getLogger(__name__)
 
 
-def run_agent(
+def run_comparison(
     source_env: str,
     target_env: str,
     deployment_sheet_data: List[Dict[str, str]],
     profile_mapping: Optional[List[Dict[str, str]]] = None,
 ) -> Dict[str, Any]:
     """
-    Main orchestration function for the agent.
+    Main function for the compare and sync workflow.
 
     Steps:
       1. Parse deployment sheet into standardized component list
@@ -36,7 +36,7 @@ def run_agent(
             When provided, only those profile pairs are compared.
     """
     logger.info(
-        f"Starting Agent Run: {source_env} → {target_env} | "
+        f"Starting Comparison Run: {source_env} → {target_env} | "
         f"Profile pairs: {len(profile_mapping) if profile_mapping else 'none (name-union mode)'}"
     )
 
@@ -58,7 +58,19 @@ def run_agent(
         if status == "Match":
             continue
 
-        action = "Update" if status == "Mismatch" else "Add"
+        if status == "Mismatch":
+            action = "Update"
+        elif status == "Missing in Target":
+            action = "Add"
+        else:  # Missing in Source — profile exists in target only
+            action = "Add"
+
+        # For 'Missing in Source' items, the source_value is empty (profile doesn't exist
+        # in source org). We use the current target value as the desired state so that
+        # approving these items confirms/preserves the target-only profile's permissions.
+        desired_target_state = (
+            detail["target"] if status == "Missing in Source" else detail["source"]
+        )
 
         action_plan.append({
             "action_id": detail["id"],
@@ -73,8 +85,10 @@ def run_agent(
             "action": action,
             "status_detail": status,
             "source_value": detail["source"],
-            # Desired target state = what source currently has
-            "target": detail["source"],
+            # Desired target state:
+            #   Missing in Target / Mismatch → apply source's permissions to target
+            #   Missing in Source            → confirm/preserve target's existing permissions
+            "target": desired_target_state,
             "current_target_value": detail["target"],
             "status": "Pending Approval",
         })

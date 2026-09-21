@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
-  Shield, Bot, Activity, TrendingUp, Zap, FileBarChart
+  GitCompare
 } from 'lucide-react';
 import { useOrgStore } from '../store';
 import { EnvironmentCard } from '../components/StatusBadge';
@@ -31,15 +31,15 @@ export default function Dashboard() {
       <motion.div variants={item} className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2" style={{ color: 'var(--color-text-primary)' }}>
-            <Bot className="text-blue-400" />
-            Deployment-Based Permission Agent
+            <GitCompare className="text-blue-400" />
+            Permission Compare & Sync
           </h2>
           <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary)' }}>
-            Intelligently evaluate and deploy specific Salesforce component permissions
+            Compare and synchronize Salesforce component permissions across environments
           </p>
         </div>
         <div className="flex gap-2">
-          <QuickAction icon={Bot} label="Run Agent" onClick={() => navigate('/agent')} />
+          <QuickAction icon={GitCompare} label="Compare & Sync" onClick={() => navigate('/agent')} />
         </div>
       </motion.div>
 
@@ -49,7 +49,7 @@ export default function Dashboard() {
           { label: 'Connected Orgs', value: environments.filter(e => e.connected).length },
           { label: 'Configured Envs', value: environments.length },
           { label: 'Total Metadata Cached', value: environments.reduce((sum, e) => sum + (e.metadata_count || 0), 0) },
-          { label: 'Agent Status', value: 'Ready' }
+          { label: 'Tool Status', value: 'Ready' }
         ].map((stat, i) => (
           <div key={i} className="card p-4 flex flex-col justify-center">
             <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-tertiary)' }}>{stat.label}</span>
@@ -89,22 +89,22 @@ export default function Dashboard() {
       <motion.div variants={item} className="grid grid-cols-1 gap-4">
         <div className="card p-6">
           <h3 className="text-sm font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--color-accent-blue)' }}>
-            Getting Started with the Agent
+            Getting Started
           </h3>
           <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
-            The new agent workflow replaces full-org syncs with targeted component deployments.
+            Run targeted permission comparisons and sync only what you need across environments.
           </p>
           <ul className="text-sm space-y-2 list-disc list-inside" style={{ color: 'var(--color-text-tertiary)' }}>
             <li>Connect your Source and Target orgs.</li>
-            <li>Launch the <strong style={{ color: 'var(--color-text-primary)' }}>Agent Orchestrator</strong>.</li>
+            <li>Launch the <strong style={{ color: 'var(--color-text-primary)' }}>Compare & Sync</strong> tool.</li>
             <li>Add the specific components (e.g. ApexClass) you want to deploy permissions for.</li>
-            <li>Review the AI-generated impact plan and deploy your changes cleanly.</li>
+            <li>Review the generated action plan and deploy your changes cleanly.</li>
           </ul>
           <button 
             onClick={() => navigate('/agent')}
             className="btn-primary mt-6"
           >
-            Launch Agent
+            Launch Compare & Sync
           </button>
         </div>
       </motion.div>

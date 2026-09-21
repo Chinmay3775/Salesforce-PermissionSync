@@ -4,7 +4,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  LayoutDashboard, Link2, Bot, FileBarChart, ChevronLeft,
+  LayoutDashboard, Link2, GitCompare, ChevronLeft,
   ChevronRight, Shield, Zap
 } from 'lucide-react';
 import { useUIStore } from '../store';
@@ -12,7 +12,7 @@ import { useUIStore } from '../store';
 const navItems = [
   { path: '/', label: 'Dashboard',           icon: LayoutDashboard },
   { path: '/connections', label: 'Connections', icon: Link2 },
-  { path: '/agent', label: 'Compare & Sync',  icon: Bot },
+  { path: '/agent', label: 'Compare & Sync',  icon: GitCompare },
 ];
 
 export default function Sidebar() {

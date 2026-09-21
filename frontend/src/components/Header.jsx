@@ -2,7 +2,7 @@
  * Header — Top bar with breadcrumbs, environment selector, and status.
  */
 import { useLocation } from 'react-router-dom';
-import { Bell, Search, Settings, CircleDot, Sun, Moon, ServerCog } from 'lucide-react';
+import { CircleDot, Sun, Moon } from 'lucide-react';
 import { useUIStore, useOrgStore } from '../store';
 import { useEffect, useState } from 'react';
 import { checkHealth } from '../services/api';
@@ -10,7 +10,7 @@ import { checkHealth } from '../services/api';
 const routeLabels = {
   '/': 'Dashboard',
   '/connections': 'Org Connections',
-  '/agent': 'Agent Orchestrator',
+  '/agent': 'Compare & Sync',
 };
 
 export default function Header() {

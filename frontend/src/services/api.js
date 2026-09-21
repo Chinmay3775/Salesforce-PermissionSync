@@ -34,9 +34,9 @@ export const validateConnection = (data) => api.post('/validate-connection', dat
 export const getProfiles = (environment) =>
   api.get('/profiles', { params: { environment } });
 
-// ============ Agent / Compare Workflow ============
+// ============ Compare & Sync Workflow ============
 /**
- * Run the comparison agent.
+ * Run the permission comparison.
  * @param {{
  *   source_env: string,
  *   target_env: string,
@@ -44,8 +44,8 @@ export const getProfiles = (environment) =>
  *   profile_mapping?: {source_profile:string, target_profile:string}[]
  * }} data
  */
-export const runAgent = (data) => api.post('/agent/run', data);
-export const approveAgentActions = (data) => api.post('/agent/approve', data);
+export const runComparison = (data) => api.post('/compare/run', data);
+export const approveActions = (data) => api.post('/compare/approve', data);
 
 // ============ Reports ============
 export const generateReport = (data) => api.post('/generate-report', data);

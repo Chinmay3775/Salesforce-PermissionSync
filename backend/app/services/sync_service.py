@@ -1,10 +1,13 @@
 """
 Sync Engine — applies approved permission changes directly to the target Salesforce org.
 
-Supports three permission categories via simple_salesforce REST/Tooling API:
-  - ApexClass Access   → SetupEntityAccess (Tooling API)
-  - Field Permissions  → FieldPermissions (REST API)
-  - Object Permissions → ObjectPermissions (REST API)
+Supports the following permission categories:
+  - ApexClass Access    → SetupEntityAccess (Tooling API)
+  - Field Permissions   → FieldPermissions (REST API)
+  - Object Permissions  → ObjectPermissions (REST API)
+  - FlowAccess          → SetupEntityAccess + Profile XML (Metadata API)
+  - CustomTab           → Profile XML tabVisibilities (Metadata API)
+  - PageLayout          → Profile XML layoutAssignments (Metadata API)
 
 Each action carries the profile name in the target org (target_profile field).
 The engine resolves the PermissionSet ID for that profile, then upserts the record.
@@ -23,6 +26,7 @@ from collections import defaultdict
 from typing import Dict, List, Any, Optional
 
 from app.services.salesforce_service import get_connection
+from app.services.metadata_service import _resolve_flow_definition_id
 
 logger = logging.getLogger(__name__)
 
@@ -44,35 +48,44 @@ def _query_all_tooling(sf, query: str) -> List[Dict[str, Any]]:
 
 def _validate_components_exist(sf, actions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
-    Validates that the target components (CustomField, CustomObject, ApexClass) actually exist in the target org.
-    Any actions for components that do not exist are marked as Failed and excluded from the deployment list.
+    Validates that the target components actually exist in the target org.
+    Covers: CustomField, CustomObject, ApexClass, FlowAccess, CustomTab, PageLayout.
+    Any actions for components that do not exist are marked as Failed and excluded
+    from the deployment list.
     """
     valid_actions = []
-    
-    # Collect components to check
-    custom_fields = set()
+
+    # Collect components to check by type
+    custom_fields  = set()
     custom_objects = set()
-    apex_classes = set()
-    
+    apex_classes   = set()
+    flow_names     = set()
+    tab_names      = set()
+    layout_names   = set()
+
     for act in actions:
         ctype = act.get("component_type")
         cname = act.get("component_name")
-        if ctype == "CustomField":
-            custom_fields.add(cname)
-        elif ctype == "CustomObject":
-            custom_objects.add(cname)
-        elif ctype == "ApexClass":
-            apex_classes.add(cname)
-            
+        if   ctype == "CustomField":   custom_fields.add(cname)
+        elif ctype == "CustomObject":  custom_objects.add(cname)
+        elif ctype == "ApexClass":     apex_classes.add(cname)
+        elif ctype == "FlowAccess":    flow_names.add(cname)
+        elif ctype == "CustomTab":     tab_names.add(cname)
+        elif ctype == "PageLayout":    layout_names.add(cname)
+
     # Fetch existing components from Target
-    existing_fields = set()
+    existing_fields  = set()
     existing_objects = set()
     existing_classes = set()
+    existing_flows   = set()
+    existing_tabs    = set()
+    existing_layouts = set()
     
     try:
         import urllib.parse
         
         object_id_to_name = {}
+        obj_name_map = {}
         if custom_fields or custom_objects:
             records = _query_all_tooling(sf, "SELECT Id, DeveloperName, NamespacePrefix FROM CustomObject")
             for r in records:
@@ -80,10 +93,27 @@ def _validate_components_exist(sf, actions: List[Dict[str, Any]]) -> List[Dict[s
                 ns = r.get("NamespacePrefix")
                 api_name = f"{ns}__{dev_name}__c" if ns else f"{dev_name}__c"
                 existing_objects.add(api_name)
+                existing_objects.add(api_name.lower())
+                obj_name_map[api_name.lower()] = api_name
+                if dev_name:
+                    existing_objects.add(dev_name)
+                    existing_objects.add(dev_name.lower())
+                    obj_name_map[dev_name.lower()] = api_name
                 obj_id = r.get("Id")
                 if obj_id:
                     object_id_to_name[obj_id] = api_name
                     object_id_to_name[obj_id[:15]] = api_name
+
+            # Include standard SObjects (Account, Contact, etc.)
+            try:
+                for sobj in sf.describe().get("sobjects", []):
+                    sname = sobj.get("name")
+                    if sname:
+                        existing_objects.add(sname)
+                        existing_objects.add(sname.lower())
+                        obj_name_map[sname.lower()] = sname
+            except Exception:
+                pass
 
         if custom_fields:
             records = _query_all_tooling(sf, "SELECT DeveloperName, TableEnumOrId, NamespacePrefix FROM CustomField")
@@ -94,43 +124,151 @@ def _validate_components_exist(sf, actions: List[Dict[str, Any]]) -> List[Dict[s
                 dev_name = r.get("DeveloperName")
                 ns = r.get("NamespacePrefix")
                 api_name = f"{ns}__{dev_name}__c" if ns else f"{dev_name}__c"
-                existing_fields.add(f"{obj_name}.{api_name}")
+                full_field = f"{obj_name}.{api_name}"
+                existing_fields.add(full_field)
+                existing_fields.add(full_field.lower())
                 
         if apex_classes:
             records = _query_all_tooling(sf, "SELECT Name, NamespacePrefix FROM ApexClass")
             for r in records:
                 name = r.get("Name")
-                ns = r.get("NamespacePrefix")
+                ns   = r.get("NamespacePrefix")
                 api_name = f"{ns}__{name}" if ns else name
                 existing_classes.add(api_name)
-                
+                existing_classes.add(api_name.lower())
+
+        flow_name_map = {}
+        if flow_names:
+            # 1. Tooling API FlowDefinition (contains DeveloperName, FullName, MasterLabel, Id)
+            try:
+                records = _query_all_tooling(sf, "SELECT Id, DeveloperName, FullName, MasterLabel FROM FlowDefinition")
+                for r in records:
+                    dev_name = r.get("DeveloperName")
+                    full_name = r.get("FullName")
+                    label = r.get("MasterLabel")
+                    canonical = full_name or dev_name
+                    if canonical:
+                        existing_flows.add(canonical)
+                        existing_flows.add(canonical.lower())
+                        flow_name_map[canonical.lower()] = canonical
+                    if dev_name:
+                        existing_flows.add(dev_name)
+                        existing_flows.add(dev_name.lower())
+                        flow_name_map[dev_name.lower()] = canonical
+                    if label:
+                        existing_flows.add(label)
+                        existing_flows.add(label.lower())
+                        flow_name_map[label.lower()] = canonical
+            except Exception as e:
+                logger.warning(f"Failed to query Tooling FlowDefinition: {e}")
+
+            # 2. FlowDefinitionView (standard SOQL, covers packaged & active system flows)
+            try:
+                records = sf.query_all("SELECT DurableId, ApiName, Label FROM FlowDefinitionView").get('records', [])
+                for r in records:
+                    durable_id = r.get("DurableId")
+                    api_name = r.get("ApiName")
+                    label = r.get("Label")
+                    canonical = durable_id or api_name
+                    if canonical:
+                        existing_flows.add(canonical)
+                        existing_flows.add(canonical.lower())
+                        flow_name_map[canonical.lower()] = canonical
+                    if api_name:
+                        existing_flows.add(api_name)
+                        existing_flows.add(api_name.lower())
+                        flow_name_map[api_name.lower()] = canonical
+                    if label:
+                        existing_flows.add(label)
+                        existing_flows.add(label.lower())
+                        flow_name_map[label.lower()] = canonical
+            except Exception as e:
+                logger.warning(f"Failed to query FlowDefinitionView: {e}")
+
+        tab_name_map = {}
+        if tab_names:
+            # TabDefinition contains DurableId, Name (API Name e.g. 'Audit__c'), and Label (e.g. 'Audits')
+            records = sf.query_all("SELECT DurableId, Name, Label FROM TabDefinition").get('records', [])
+            for r in records:
+                name = r.get('Name')
+                label = r.get('Label')
+                durable_id = r.get('DurableId')
+                if name:
+                    existing_tabs.add(name)
+                    existing_tabs.add(name.lower())
+                    tab_name_map[name.lower()] = name
+                    if name.endswith('__c'):
+                        existing_tabs.add(name[:-3])
+                        existing_tabs.add(name[:-3].lower())
+                        tab_name_map[name[:-3].lower()] = name
+                if label:
+                    existing_tabs.add(label)
+                    existing_tabs.add(label.lower())
+                    if name:
+                        tab_name_map[label.lower()] = name
+                if durable_id:
+                    existing_tabs.add(durable_id)
+
+        if layout_names:
+            # Tooling API Layout.Name matches the value users provide
+            records = _query_all_tooling(sf, "SELECT Name FROM Layout")
+            existing_layouts = {r['Name'] for r in records}
+            existing_layouts.update({r['Name'].lower() for r in records})
+
     except Exception as e:
         logger.error(f"Error querying target org for component validation: {e}")
         # If validation fails, just proceed and let Salesforce catch the missing components
         return actions
 
-    # Filter actions
+    # Filter & normalize actions
     for act in actions:
         ctype = act.get("component_type")
-        cname = act.get("component_name")
+        cname = act.get("component_name", "")
+        cname_lower = cname.lower()
         is_valid = True
-        
-        if ctype == "CustomField" and cname not in existing_fields:
-            is_valid = False
-        elif ctype == "CustomObject" and cname not in existing_objects:
-            is_valid = False
-        elif ctype == "ApexClass" and cname not in existing_classes:
-            is_valid = False
-            
+
+        if ctype == "CustomField":
+            if cname not in existing_fields and cname_lower not in existing_fields:
+                is_valid = False
+
+        elif ctype == "CustomObject":
+            if cname in existing_objects or cname_lower in existing_objects:
+                # Normalize to canonical object API name if available
+                act["component_name"] = obj_name_map.get(cname_lower, cname)
+            else:
+                is_valid = False
+
+        elif ctype == "ApexClass":
+            if cname not in existing_classes and cname_lower not in existing_classes:
+                is_valid = False
+
+        elif ctype == "FlowAccess":
+            if cname in existing_flows or cname_lower in existing_flows:
+                # Normalize to canonical flow API name
+                act["component_name"] = flow_name_map.get(cname_lower, cname)
+            else:
+                is_valid = False
+
+        elif ctype == "CustomTab":
+            if cname in existing_tabs or cname_lower in existing_tabs:
+                # Normalize to canonical tab API name (e.g. 'Audit__c')
+                act["component_name"] = tab_name_map.get(cname_lower, cname)
+            else:
+                is_valid = False
+
+        elif ctype == "PageLayout":
+            if cname not in existing_layouts and cname_lower not in existing_layouts:
+                is_valid = False
+
         if is_valid:
             valid_actions.append(act)
         else:
             act["sync_status"] = "Failed"
-            act["error"] = f"Component {cname} does not exist in target org."
-            
+            act["error"] = f"Component '{cname}' does not exist in target org."
+
     if len(valid_actions) < len(actions):
         logger.warning(f"Filtered out {len(actions) - len(valid_actions)} actions because components are missing in target.")
-        
+
     return valid_actions
 
 
@@ -214,6 +352,15 @@ def _deploy_via_rest_api(sf, target_env, approved_actions):
             elif component_type == "CustomObject":
                 _sync_object_permission(sf, ps_id, component_name, desired_state)
 
+            elif component_type == "FlowAccess":
+                _sync_flow_access(sf, ps_id, component_name, desired_state)
+
+            elif component_type in ("CustomTab", "PageLayout"):
+                raise ValueError(
+                    f"{component_type} requires Metadata API deployment. "
+                    f"REST fallback is not supported for this type."
+                )
+
             else:
                 logger.warning(f"Unsupported component type for sync: {component_type}")
                 raise ValueError(f"Component type '{component_type}' is not yet supported for sync.")
@@ -260,6 +407,8 @@ def _deploy_via_rest_api(sf, target_env, approved_actions):
 # Constants
 USE_METADATA_API = True
 MAX_POLL_WAIT_SECONDS = 180
+# Single canonical API version — used for all Tooling, REST, and Metadata API calls.
+SF_API_VERSION = "60.0"
 SF_NAMESPACE = "http://soap.sforce.com/2006/04/metadata"
 ET.register_namespace('', SF_NAMESPACE)
 
@@ -489,7 +638,22 @@ def _build_profile_xml(actions: List[Dict], is_custom: bool = False) -> str:
             node = ET.SubElement(root, f"{{{SF_NAMESPACE}}}classAccesses")
             ET.SubElement(node, f"{{{SF_NAMESPACE}}}apexClass").text = cname
             ET.SubElement(node, f"{{{SF_NAMESPACE}}}enabled").text = str(target.get('enabled', False)).lower()
-    
+
+        elif ctype == "FlowAccess":
+            node = ET.SubElement(root, f"{{{SF_NAMESPACE}}}flowAccesses")
+            ET.SubElement(node, f"{{{SF_NAMESPACE}}}enabled").text = str(target.get('enabled', True)).lower()
+            ET.SubElement(node, f"{{{SF_NAMESPACE}}}flow").text = cname
+
+        elif ctype == "CustomTab":
+            node = ET.SubElement(root, f"{{{SF_NAMESPACE}}}tabVisibilities")
+            ET.SubElement(node, f"{{{SF_NAMESPACE}}}tab").text = cname
+            ET.SubElement(node, f"{{{SF_NAMESPACE}}}visibility").text = target.get('visibility', 'DefaultOn')
+
+        elif ctype == "PageLayout":
+            node = ET.SubElement(root, f"{{{SF_NAMESPACE}}}layoutAssignments")
+            ET.SubElement(node, f"{{{SF_NAMESPACE}}}layout").text = cname
+            if target.get("recordType"):
+                ET.SubElement(node, f"{{{SF_NAMESPACE}}}recordType").text = target["recordType"]
     ET.register_namespace('', SF_NAMESPACE)
     return ET.tostring(root, encoding="unicode", xml_declaration=True)
 
@@ -510,7 +674,7 @@ def _build_deployment_zip_from_scratch(profile_xmls: Dict[str, str]) -> str:
         package_xml += f"        <members>{pname}</members>\n"
     package_xml += "        <name>Profile</name>\n"
     package_xml += "    </types>\n"
-    package_xml += "    <version>58.0</version>\n</Package>"
+    package_xml += f"    <version>{SF_API_VERSION}</version>\n</Package>"
     
     # Build ZIP
     buf = io.BytesIO()
@@ -799,6 +963,50 @@ def _sync_object_permission(sf, ps_id: str, sobject_type: str, desired: dict):
         logger.debug(f"Created ObjectPermission: {sobject_type}")
 
 
+def _sync_flow_access(sf, ps_id: str, flow_name: str, desired: dict):
+    """
+    Grant or revoke FlowAccess via SetupEntityAccess.
+    Uses _resolve_flow_definition_id to resolve the 18-character FlowDefinition Id (SetupEntityId).
+    """
+    enabled = desired.get("enabled", False)
+
+    flow_def_id = _resolve_flow_definition_id(sf, flow_name)
+    if not flow_def_id:
+        raise ValueError(f"FlowAccess: flow '{flow_name}' not found or could not resolve FlowDefinition Id")
+
+    # Check if access already exists
+    existing = sf.query_all(
+        f"SELECT Id FROM SetupEntityAccess "
+        f"WHERE SetupEntityId = '{flow_def_id}' "
+        f"AND ParentId = '{ps_id}' "
+        f"AND SetupEntityType = 'FlowDefinition'"
+    ).get('records', [])
+
+    if enabled and not existing:
+        try:
+            sf.SetupEntityAccess.create({
+                "SetupEntityId": flow_def_id,
+                "ParentId": ps_id,
+            })
+        except Exception:
+            # Fallback to Tooling API if Standard API insert is restricted
+            sf.toolingexecute(
+                "sobjects/SetupEntityAccess",
+                method="POST",
+                data={"SetupEntityId": flow_def_id, "ParentId": ps_id},
+            )
+        logger.debug(f"Granted FlowAccess: {flow_name} → PS {ps_id}")
+    elif not enabled and existing:
+        row_id = existing[0]["Id"]
+        try:
+            sf.SetupEntityAccess.delete(row_id)
+        except Exception:
+            sf.toolingexecute(f"sobjects/SetupEntityAccess/{row_id}", method="DELETE")
+        logger.debug(f"Revoked FlowAccess: {flow_name} → PS {ps_id}")
+    else:
+        logger.debug(f"No change needed for FlowAccess {flow_name} (enabled={enabled})")
+
+
 def _escape_soql(value: str) -> str:
     """Escape single quotes in SOQL string literals."""
-    return value.replace("'", "\\'")
+    return value.replace("'", "\\'")
