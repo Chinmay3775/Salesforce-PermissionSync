@@ -42,7 +42,7 @@ Salesforce PermissionSync/
 Open your terminal and clone the repository from GitHub:
 
 ```bash
-git clone https://github.com/Thinqloud/<repository-name>.git
+git clone https://github.com/Chinmay3775/Salesforce-PermissionSync.git
 cd "Salesforce PermissionSync"
 ```
 
