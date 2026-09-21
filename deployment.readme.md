@@ -1,4 +1,5 @@
 # deployment.readme — PermissionSync
+
 ### Step-by-Step Installation, Setup & Local Deployment Guide
 
 > Follow this guide to set up a clean, working installation of PermissionSync from source on your local machine.
@@ -50,27 +51,32 @@ cd "Salesforce PermissionSync"
 ## 3. Step 2: Configure & Start the Backend (Python)
 
 ### 3.1 Navigate to Backend Directory
+
 ```bash
 cd backend
 ```
 
 ### 3.2 Create and Activate a Python Virtual Environment
+
 Creating a virtual environment ensures dependencies do not conflict with your global Python setup:
 
-* **On Windows (PowerShell):**
+- **On Windows (PowerShell):**
+
   ```powershell
   python -m venv venv
   .\venv\Scripts\Activate.ps1
   ```
-  *(If you get a script execution policy restriction on Windows, run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` first).*
 
-* **On Windows (Command Prompt):**
+  _(If you get a script execution policy restriction on Windows, run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` first)._
+
+- **On Windows (Command Prompt):**
+
   ```cmd
   python -m venv venv
   venv\Scripts\activate.bat
   ```
 
-* **On macOS / Linux:**
+- **On macOS / Linux:**
   ```bash
   python3 -m venv venv
   source venv/bin/activate
@@ -79,18 +85,22 @@ Creating a virtual environment ensures dependencies do not conflict with your gl
 Once activated, your terminal prompt will show `(venv)`.
 
 ### 3.3 Install Backend Dependencies
+
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-*Wait for pip to finish downloading and compiling packages (approx. 1 minute).*
+
+_Wait for pip to finish downloading and compiling packages (approx. 1 minute)._
 
 ### 3.4 Start the Backend Server
+
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 You should see:
+
 ```text
 🚀 Starting Salesforce PermissionSync Platform...
   ✓ Ensured storage directories
@@ -99,9 +109,11 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
 ### 3.5 Verify Backend Health
+
 Open a browser tab and verify:
-* **Health Endpoint:** [http://localhost:8000/api/health](http://localhost:8000/api/health) $\longrightarrow$ Returns `{"status": "healthy"}`
-* **Interactive Swagger UI:** [http://localhost:8000/docs](http://localhost:8000/docs) $\longrightarrow$ Displays full API documentation
+
+- **Health Endpoint:** [http://localhost:8000/api/health](http://localhost:8000/api/health) $\longrightarrow$ Returns `{"status": "healthy"}`
+- **Interactive Swagger UI:** [http://localhost:8000/docs](http://localhost:8000/docs) $\longrightarrow$ Displays full API documentation
 
 > **Keep this terminal window running.** Do not close it.
 
@@ -112,23 +124,28 @@ Open a browser tab and verify:
 Open a **second, separate terminal window**.
 
 ### 4.1 Navigate to Frontend Directory
+
 ```bash
 cd "Salesforce PermissionSync"
 cd frontend
 ```
 
 ### 4.2 Install Node.js Dependencies
+
 ```bash
 npm install
 ```
-*Installs React, Vite, Framer Motion, Lucide icons, and the XLSX library.*
+
+_Installs React, Vite, Framer Motion, Lucide icons, and the XLSX library._
 
 ### 4.3 Start the Frontend Dev Server
+
 ```bash
 npm run dev
 ```
 
 You should see:
+
 ```text
   VITE v6.x.x  ready in 350 ms
 
@@ -152,27 +169,28 @@ You should see:
 ## 6. Troubleshooting & Frequently Asked Questions
 
 ### Issue 1: Port Already in Use (`Error: listen EADDRINUSE: address already in use :::8000`)
-* **Cause:** Another process or a previous instance of uvicorn is occupying port 8000 or 5173.
-* **Solution (Windows PowerShell):**
+
+- **Cause:** Another process or a previous instance of uvicorn is occupying port 8000 or 5173.
+- **Solution (Windows PowerShell):**
   ```powershell
   Get-Process -Id (Get-NetTCPConnection -LocalPort 8000).OwningProcess | Stop-Process -Force
   ```
-* **Solution (macOS / Linux):**
+- **Solution (macOS / Linux):**
   ```bash
   lsof -ti:8000 | xargs kill -9
   ```
 
 ### Issue 2: OAuth Authentication Fails (`invalid_client` or `invalid_client_id`)
-* **Cause:** The Connected App was recently created in Salesforce and metadata has not fully synchronized, or the Client Secret was truncated.
-* **Solution:**
+
+- **Cause:** The Connected App was recently created in Salesforce and metadata has not fully synchronized, or the Client Secret was truncated.
+- **Solution:**
   1. Salesforce Connected Apps often take **5–10 minutes** to become active across all login clusters after initial creation.
   2. Verify that **Enable Client Credentials Flow** is checked under **Manage Connected Apps → Edit Policies**, and that an active System Administrator is assigned as the **Run As** user.
   3. Ensure there are no leading or trailing whitespace characters copied with your Consumer Key or Secret.
 
 ### Issue 3: "Component Does Not Exist in Target Org" During Sync
-* **Cause:** PermissionSync safely validates component existence before applying permissions. If you deployed a permission for a new Custom Field or Apex Class that has not yet been deployed to the target org, Salesforce will reject the permission record.
-* **Solution:** Deploy the underlying metadata component (e.g., Apex Class or Field definition) to the target org first, then use PermissionSync to apply the profile permissions.
+
+- **Cause:** PermissionSync safely validates component existence before applying permissions. If you deployed a permission for a new Custom Field or Apex Class that has not yet been deployed to the target org, Salesforce will reject the permission record.
+- **Solution:** Deploy the underlying metadata component (e.g., Apex Class or Field definition) to the target org first, then use PermissionSync to apply the profile permissions.
 
 ---
-
-*Maintained by Thinqloud Engineering Team*
